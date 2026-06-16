@@ -1,9 +1,10 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const PORT = Number(process.env.PORT || 4173);
-const ROOT = new URL('.', import.meta.url).pathname;
+const ROOT = process.env.NETLIFY ? process.cwd() : new URL('.', import.meta.url).pathname;
 const PUBLIC_DIR = join(ROOT, 'public');
 const INDEX_PATH = join(PUBLIC_DIR, 'index.html');
 const APTITUDE_PATH = join(PUBLIC_DIR, 'aptitude.html');
@@ -432,6 +433,53 @@ async function handleApi(req, res, url) {
   return false;
 }
 
+export async function handleApiFetch(method, pathname, body = {}) {
+  if (method === 'GET' && pathname === '/api/corpus') {
+    return { status: 200, body: await getCorpus() };
+  }
+  if (method === 'GET' && pathname === '/api/corpus-aptitude') {
+    return { status: 200, body: await getCorpus(APTITUDE_PATH, 'aptitude') };
+  }
+  if (method === 'GET' && pathname === '/api/status') {
+    return {
+      status: 200,
+      body: {
+        geminiConfigured: Boolean(process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY),
+        groqConfigured: Boolean(process.env.GROQ_API_KEY),
+        mode: process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY
+          ? 'Gemini primary'
+          : process.env.GROQ_API_KEY
+            ? 'Groq Llama fallback'
+            : 'Local preread only'
+      }
+    };
+  }
+  if (method === 'POST' && pathname === '/api/search') {
+    const corpus = await getCorpus();
+    const results = searchChunks(corpus.chunks, body.query || '', body.filters || ['all'], 40);
+    return { status: 200, body: { query: body.query || '', total: results.length, results } };
+  }
+  if (method === 'POST' && pathname === '/api/search-aptitude') {
+    const corpus = await getCorpus(APTITUDE_PATH, 'aptitude');
+    const results = searchChunks(corpus.chunks, body.query || '', body.filters || ['all'], 40);
+    return { status: 200, body: { query: body.query || '', total: results.length, results } };
+  }
+  if (method === 'POST' && pathname === '/api/ask') {
+    const question = String(body.question || '').trim();
+    if (!question) return { status: 400, body: { error: 'Question is required.' } };
+    return { status: 200, body: await answerQuestion(question) };
+  }
+  if (method === 'POST' && pathname === '/api/ask-aptitude') {
+    const question = String(body.question || '').trim();
+    if (!question) return { status: 400, body: { error: 'Question is required.' } };
+    return { status: 200, body: await answerQuestion(question, APTITUDE_PATH, 'aptitude', 'aptitude') };
+  }
+  if (method === 'POST' && pathname === '/api/web-search') {
+    return { status: 200, body: { results: await webSearch(String(body.query || '')) } };
+  }
+  return { status: 404, body: { error: 'Not found' } };
+}
+
 async function serveStatic(req, res, url) {
   let requested = decodeURIComponent(url.pathname);
   if (requested === '/' || requested === '') requested = '/home.html';
@@ -450,14 +498,16 @@ async function serveStatic(req, res, url) {
   }
 }
 
-createServer(async (req, res) => {
-  const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
-  try {
-    if (url.pathname.startsWith('/api/') && await handleApi(req, res, url)) return;
-    await serveStatic(req, res, url);
-  } catch (error) {
-    send(res, 500, { error: error.message || 'Server error' });
-  }
-}).listen(PORT, () => {
-  console.log(`Antbox preread app running at http://localhost:${PORT}`);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  createServer(async (req, res) => {
+    const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
+    try {
+      if (url.pathname.startsWith('/api/') && await handleApi(req, res, url)) return;
+      await serveStatic(req, res, url);
+    } catch (error) {
+      send(res, 500, { error: error.message || 'Server error' });
+    }
+  }).listen(PORT, () => {
+    console.log(`Antbox preread app running at http://localhost:${PORT}`);
+  });
+}
