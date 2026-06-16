@@ -1,7 +1,7 @@
-import { handleApiFetch } from '../../server.mjs';
-
 export default async (req) => {
   try {
+    process.env.ANTBOX_ROOT ||= new URL('../..', import.meta.url).pathname;
+    const { handleApiFetch } = await import('../../server.mjs');
     const url = new URL(req.url);
     let body = {};
     if (req.method !== 'GET' && req.headers.get('content-length') !== '0') {

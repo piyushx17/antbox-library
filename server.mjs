@@ -4,7 +4,7 @@ import { extname, join, normalize } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const PORT = Number(process.env.PORT || 4173);
-const ROOT = process.env.NETLIFY ? process.cwd() : new URL('.', import.meta.url).pathname;
+const ROOT = process.env.ANTBOX_ROOT || new URL('.', import.meta.url).pathname;
 const PUBLIC_DIR = join(ROOT, 'public');
 const INDEX_PATH = join(PUBLIC_DIR, 'index.html');
 const APTITUDE_PATH = join(PUBLIC_DIR, 'aptitude.html');
