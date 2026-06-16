@@ -243,17 +243,22 @@ function snippetFor(text, tokens) {
   return `${start > 0 ? '...' : ''}${text.slice(start, end)}${end < text.length ? '...' : ''}`;
 }
 
-function localAnswer(question, results) {
+function localAnswer(question, results, aiConfigured = false) {
+  const note = aiConfigured
+    ? 'The AI provider is configured, but it did not return a generated answer right now, so I am showing exact local matches instead.'
+    : 'No AI provider key is configured right now, so I am showing exact local matches instead of generating an answer.';
   if (!results.length) {
     return {
-      answer: 'No matching preread passage was found. No AI provider key is configured right now, so I cannot safely generate a broader answer yet.',
+      answer: aiConfigured
+        ? 'No matching local passage was found, and the AI provider did not return a generated answer right now.'
+        : 'No matching local passage was found. No AI provider key is configured right now, so I cannot safely generate a broader answer yet.',
       confidence: 'low'
     };
   }
   const top = results.slice(0, 3);
   const lines = top.map((item, index) => `${index + 1}. ${item.title}\n${item.snippet.replace(/\s+/g, ' ')}`);
   return {
-    answer: `No AI provider key is configured right now, so I am showing exact preread matches instead of generating an answer.\n\n${lines.join('\n\n')}`,
+    answer: `${note}\n\n${lines.join('\n\n')}`,
     confidence: results[0].score >= 16 ? 'medium' : 'low'
   };
 }
@@ -358,8 +363,9 @@ async function answerQuestion(question, filePath = INDEX_PATH, cacheKey = filePa
       if (answer) provider = 'groq';
     } catch {}
   }
+  const aiConfigured = Boolean(process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.GROQ_API_KEY);
   if (!answer) {
-    const local = localAnswer(question, results);
+    const local = localAnswer(question, results, aiConfigured);
     answer = local.answer;
   }
 
@@ -367,7 +373,7 @@ async function answerQuestion(question, filePath = INDEX_PATH, cacheKey = filePa
     answer,
     provider,
     providerLabel: provider === 'gemini' ? 'Gemini' : provider === 'groq' ? 'Groq Llama' : 'Local preread only',
-    aiConfigured: Boolean(process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.GROQ_API_KEY),
+    aiConfigured,
     usedWeb: webResults.length > 0,
     citations: results.map(item => ({ title: item.title, anchor: item.anchor, type: item.type })),
     webCitations: webResults.map(item => ({ title: item.title, url: item.url }))
