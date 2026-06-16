@@ -1,0 +1,17 @@
+[build]
+  publish = "public"
+
+[[redirects]]
+  from = "/"
+  to = "/home.html"
+  status = 200
+
+[[redirects]]
+  from = "/finance"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/aptitude"
+  to = "/aptitude.html"
+  status = 200
