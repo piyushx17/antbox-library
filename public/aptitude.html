@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antbox · Aptitude Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f7f5ee;
+  --cream-warm: #f1ede0;
+  --purple: #bb62de;
+  --purple-soft: #e8d4f3;
+  --purple-mist: #f4e8fa;
+  --purple-deep: #8a3aaa;
+  --ink: #1a1a1a;
+  --ink-muted: #6a6a6a;
+  --ink-soft: #9a9a9a;
+  --line: #e4ddc7;
+  --line-soft: #efe9d6;
+  --white: #ffffff;
+  --red: #c1554a;
+  --green: #4a8a5e;
+  --amber: #c2933c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display, h1, h2, h3, .num {
+  font-family: 'Century Gothic', 'Futura', 'Avenir', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+/* ===== HERO ===== */
+.hero {
+  background: var(--cream);
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--line);
+}
+.hero-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 56px;
+}
+.logo {
+  font-family: 'Century Gothic', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 2px;
+}
+.logo .dot {
+  display: inline-block; width: 8px; height: 8px;
+  background: var(--purple); border-radius: 50%;
+  margin: 0 1px 8px 0;
+}
+.hero-meta {
+  font-size: 13px; color: var(--ink-muted);
+  display: flex; gap: 24px;
+  font-variant-numeric: tabular-nums;
+}
+.hero-meta span { display: flex; align-items: center; gap: 8px; }
+.hero-meta .pill {
+  background: var(--purple); color: white;
+  padding: 4px 10px; border-radius: 4px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+}
+.hero-eyebrow {
+  font-size: 13px; font-weight: 600;
+  color: var(--purple-deep); letter-spacing: 0.16em;
+  text-transform: uppercase; margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(40px, 6vw, 68px);
+  line-height: 1.02;
+  margin-bottom: 28px;
+  max-width: 900px;
+}
+.hero h1 .accent { color: var(--purple); }
+.hero-sub {
+  font-size: 19px; line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.hero-stat .n {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 38px; font-weight: 700;
+  color: var(--purple);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.hero-stat .l {
+  font-size: 12px; color: var(--ink-muted);
+  margin-top: 8px;
+  letter-spacing: 0.04em;
+}
+
+/* ===== SECTION CHROME ===== */
+section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+section.alt { background: var(--cream-warm); }
+
+.section-head { margin-bottom: 48px; }
+.section-num {
+  display: inline-block;
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: var(--purple-deep);
+  letter-spacing: 0.18em;
+  margin-bottom: 12px;
+}
+.section-head h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.1;
+  max-width: 780px;
+  margin-bottom: 16px;
+}
+.section-head .lede {
+  font-size: 17px; color: var(--ink-muted);
+  max-width: 720px; line-height: 1.6;
+}
+
+/* ===== INTRO PROSE ===== */
+.prose p { margin-bottom: 16px; font-size: 16px; }
+.prose p + p { margin-top: 0; }
+.prose strong { color: var(--ink); font-weight: 600; }
+
+/* ===== CALLOUT BOXES ===== */
+.callout {
+  background: var(--white);
+  border-left: 3px solid var(--purple);
+  padding: 24px 28px;
+  margin: 32px 0;
+  border-radius: 0 6px 6px 0;
+}
+.callout .label {
+  font-size: 11px; font-weight: 700;
+  color: var(--purple-deep);
+  letter-spacing: 0.16em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.callout p { font-size: 15px; line-height: 1.65; color: var(--ink); }
+
+.callout.warn { border-left-color: var(--amber); }
+.callout.warn .label { color: var(--amber); }
+.callout.crit { border-left-color: var(--red); }
+.callout.crit .label { color: var(--red); }
+
+/* ===== TERM CARDS ===== */
+.terms {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.term {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 28px;
+  transition: border-color .2s;
+}
+.term:hover { border-color: var(--purple); }
+.term-head {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.term-num {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 12px; font-weight: 700;
+  color: var(--purple);
+  background: var(--purple-mist);
+  padding: 3px 8px; border-radius: 3px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.term-name {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 19px; font-weight: 700;
+  color: var(--ink);
+}
+.term-alias {
+  font-size: 13px; color: var(--ink-soft);
+  font-style: italic;
+}
+.term-def {
+  font-size: 15px; line-height: 1.6;
+  color: var(--ink); margin-bottom: 14px;
+}
+.term-rows {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 4px 16px;
+  font-size: 14px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 14px;
+}
+.term-rows dt {
+  font-size: 11px; font-weight: 700;
+  color: var(--purple-deep);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-top: 3px;
+}
+.term-rows dd {
+  color: var(--ink-muted); line-height: 1.55;
+  margin-bottom: 10px;
+}
+.term-rows dd:last-child { margin-bottom: 0; }
+.term-rows dd strong { color: var(--ink); font-weight: 600; }
+
+/* ===== DIAGRAM BLOCKS ===== */
+.diagram {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 40px 0;
+}
+.diagram-title {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: var(--purple-deep);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.diagram-sub {
+  font-size: 14px; color: var(--ink-muted);
+  margin-bottom: 24px;
+}
+.diagram svg { width: 100%; height: auto; display: block; }
+.diagram-note {
+  margin-top: 20px; padding-top: 18px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 13px; color: var(--ink-muted);
+  line-height: 1.55;
+}
+
+/* ===== SCENARIO BLOCKS ===== */
+.scenario {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin: 24px 0;
+  overflow: hidden;
+}
+.scenario-head {
+  background: var(--ink); color: white;
+  padding: 20px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.scenario-head h3 {
+  font-size: 18px; color: white;
+}
+.scenario-tag {
+  font-size: 11px; font-weight: 600;
+  background: var(--purple); color: white;
+  padding: 4px 10px; border-radius: 3px;
+  letter-spacing: 0.06em;
+}
+.scenario-body { padding: 28px; }
+.scenario-step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.scenario-step:last-child { margin-bottom: 0; }
+.step-num {
+  width: 28px; height: 28px;
+  background: var(--purple-mist);
+  color: var(--purple-deep);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px;
+  font-family: 'Century Gothic', sans-serif;
+}
+.step-content h4 {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--ink); margin-bottom: 6px;
+}
+.step-content p {
+  font-size: 14px; color: var(--ink-muted);
+  line-height: 1.6;
+}
+.step-content .quote {
+  background: var(--cream); border-left: 2px solid var(--purple);
+  padding: 12px 16px; margin-top: 10px;
+  font-size: 13px; font-style: italic;
+  color: var(--ink); line-height: 1.5;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ===== TOC ===== */
+.toc {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 40px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 32px;
+}
+.toc a {
+  color: var(--ink); text-decoration: none;
+  font-size: 14px;
+  display: flex; justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-soft);
+  transition: color .15s;
+}
+.toc a:hover { color: var(--purple); }
+.toc a .n { font-size: 12px; color: var(--purple); font-weight: 600; }
+
+/* ===== CHEAT SHEET ===== */
+.cheat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.cheat {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px 22px;
+}
+.cheat h4 {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 14px; color: var(--purple-deep);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.cheat ul { list-style: none; }
+.cheat li {
+  font-size: 13px; line-height: 1.55;
+  color: var(--ink); padding: 5px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.cheat li:last-child { border-bottom: none; }
+.cheat li strong {
+  color: var(--ink); font-weight: 600;
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 12px;
+  display: block; margin-bottom: 2px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--ink); color: var(--cream);
+  padding: 56px 0 40px;
+  text-align: left;
+}
+footer h3 {
+  font-size: 22px; color: white;
+  margin-bottom: 12px;
+}
+footer p {
+  color: rgba(247,245,238,0.65);
+  font-size: 14px; line-height: 1.6;
+  max-width: 600px; margin-bottom: 8px;
+}
+footer .foot-meta {
+  margin-top: 32px; padding-top: 24px;
+  border-top: 1px solid rgba(247,245,238,0.15);
+  font-size: 12px; color: rgba(247,245,238,0.5);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 720px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .toc, .cheat-grid { grid-template-columns: 1fr; }
+  .term-rows { grid-template-columns: 1fr; }
+  .term-rows dt { padding-top: 12px; }
+  .hero h1 { font-size: 36px; }
+  .wrap { padding: 0 20px; }
+}
+
+/* ===== INTERACTIVE LAYER ===== */
+
+/* Top sticky bar */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  transform: translateY(-100%);
+  transition: transform 0.28s ease;
+}
+.topbar.visible { transform: translateY(0); }
+.topbar-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 12px 32px;
+  display: flex; align-items: center; gap: 24px;
+}
+.topbar-logo {
+  font-family: 'Century Gothic', sans-serif;
+  font-weight: 700; font-size: 16px;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 2px;
+  white-space: nowrap; color: var(--ink);
+  text-decoration: none;
+}
+.topbar-logo .dot {
+  display: inline-block; width: 6px; height: 6px;
+  background: var(--purple); border-radius: 50%;
+  margin: 0 1px 5px 0;
+}
+.topbar-search {
+  flex: 1; max-width: 480px;
+  position: relative;
+}
+.topbar-search input {
+  width: 100%;
+  padding: 9px 38px 9px 36px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .15s, background .15s;
+}
+.topbar-search input:focus {
+  border-color: var(--purple);
+  background: white;
+}
+.topbar-search input::placeholder { color: var(--ink-soft); }
+.topbar-search::before {
+  content: '';
+  position: absolute;
+  left: 12px; top: 50%;
+  width: 14px; height: 14px;
+  transform: translateY(-50%);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239a9a9a' stroke-width='2.4' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><path d='m20 20-3.5-3.5'/></svg>");
+  background-size: contain; background-repeat: no-repeat;
+  pointer-events: none;
+}
+.search-hint {
+  position: absolute;
+  right: 8px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Century Gothic', monospace;
+  font-size: 11px; font-weight: 700;
+  color: var(--ink-soft);
+  background: white;
+  border: 1px solid var(--line);
+  padding: 2px 7px; border-radius: 3px;
+  pointer-events: none;
+}
+.topbar-search input:focus ~ .search-hint { display: none; }
+.topbar-progress {
+  display: flex; flex-direction: column;
+  gap: 4px; min-width: 140px;
+}
+.topbar-progress-text {
+  font-size: 11px; color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.topbar-progress-text strong {
+  color: var(--purple-deep);
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 12px;
+}
+.progress-track {
+  height: 4px;
+  background: var(--line-soft);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--purple);
+  width: 0%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* Left rail */
+.rail {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex; flex-direction: column; gap: 2px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.rail.visible { opacity: 1; pointer-events: auto; }
+.rail a {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+  color: var(--ink-muted);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: color 0.2s;
+  font-family: 'Century Gothic', sans-serif;
+}
+.rail-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ink-soft);
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.rail-label {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.2s;
+  white-space: nowrap;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  pointer-events: none;
+}
+.rail a:hover .rail-label,
+.rail a.active .rail-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+.rail a:hover .rail-dot,
+.rail a.active .rail-dot {
+  background: var(--purple);
+  transform: scale(1.5);
+}
+.rail a.active .rail-label {
+  background: var(--purple-deep);
+}
+
+@media (max-width: 1280px) {
+  .rail { display: none; }
+}
+
+/* Term review checkbox */
+.term .term-head {
+  align-items: center;
+}
+.term-check {
+  margin-left: auto;
+  width: 26px; height: 26px;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: transparent;
+  transition: all 0.15s;
+  flex-shrink: 0;
+  font-family: -apple-system, sans-serif;
+  font-weight: 700;
+  padding: 0;
+}
+.term-check:hover {
+  border-color: var(--purple);
+  color: var(--purple-soft);
+}
+.term-check.checked {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: white;
+}
+.term-check.checked:hover {
+  background: var(--purple-deep);
+  border-color: var(--purple-deep);
+}
+.term.reviewed {
+  background: linear-gradient(to right, #faf6ff 0%, white 60%);
+  border-color: var(--purple-soft);
+}
+
+/* Filter states */
+.term.hidden { display: none; }
+section.section-hidden { display: none; }
+
+/* When searching, hide non-glossary sections + diagrams */
+body.searching #intro,
+body.searching #scenarios,
+body.searching #cheat,
+body.searching .diagram {
+  display: none;
+}
+body.searching .hero {
+  display: none;
+}
+body.searching {
+  padding-top: 64px;
+}
+
+.search-empty {
+  display: none;
+  text-align: center;
+  padding: 120px 24px;
+  color: var(--ink-muted);
+}
+.search-empty.visible { display: block; }
+.search-empty .big {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 48px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.search-empty p { font-size: 15px; }
+.search-empty .empty-query {
+  color: var(--purple-deep);
+  font-weight: 600;
+}
+
+/* Collapsible scenarios */
+.scenario-head {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 60px;
+  transition: background 0.15s;
+}
+.scenario-head:hover { background: #2a2a2a; }
+.scenario-head::after {
+  content: '';
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  width: 9px; height: 9px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: translateY(-75%) rotate(45deg);
+  transition: transform 0.25s;
+}
+.scenario.collapsed .scenario-head::after {
+  transform: translateY(-25%) rotate(-135deg);
+}
+.scenario.collapsed .scenario-body {
+  display: none;
+}
+
+/* Back to top */
+.to-top {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  z-index: 80;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  font-family: 'Century Gothic', sans-serif;
+}
+.to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.to-top:hover {
+  background: var(--purple-deep);
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .topbar-inner {
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    gap: 10px;
+  }
+  .topbar-logo { display: none; }
+  .topbar-progress {
+    min-width: 0;
+    margin-left: auto;
+    align-items: flex-end;
+  }
+  .topbar-progress-text { font-size: 9px; }
+  .progress-track { width: 70px; }
+  .search-hint { display: none; }
+  .topbar-search input { padding-right: 14px; }
+  .to-top { bottom: 16px; right: 16px; width: 40px; height: 40px; font-size: 18px; }
+  .scenario-head { padding-right: 50px; }
+  .scenario-head::after { right: 22px; }
+}
+
+
+/* ===== ANTBOX LEARNING TOOL UPGRADE ===== */
+:root {
+  --cream: #f3f0e7;
+  --cream-warm: #ebe5d8;
+  --purple: #8f48b7;
+  --purple-soft: #dac2e9;
+  --purple-mist: #f2e7f7;
+  --purple-deep: #5d287a;
+  --ink: #141416;
+  --ink-muted: #5f5d59;
+  --ink-soft: #8d887f;
+  --line: #ded7c8;
+  --line-soft: #ebe4d7;
+}
+
+.brand-logo,
+.topbar-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo img,
+.topbar-logo img {
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-logo img { height: 54px; }
+.topbar-logo img { height: 30px; }
+
+.logo,
+.logo .dot,
+.topbar-logo .dot {
+  display: none;
+}
+
+.hero-top {
+  align-items: flex-start;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 28px 0 4px;
+}
+
+.hero-action {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hero-action.secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.tool-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ask-ant-btn,
+.clear-search-btn,
+.ant-send,
+.ant-chip {
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .16s, border-color .16s, color .16s, transform .16s;
+}
+
+.ask-ant-btn {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 6px;
+  padding: 9px 13px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+body:not(.searching) .topbar {
+  transform: translateY(0);
+}
+
+.topbar {
+  background: rgba(243,240,231,0.97);
+}
+
+.hero .brand-logo {
+  display: none;
+}
+
+.hero-top {
+  justify-content: flex-end;
+  margin-bottom: 64px;
+}
+
+.ask-ant-btn:hover,
+.ant-send:hover {
+  background: var(--purple-deep);
+  border-color: var(--purple-deep);
+  color: white;
+}
+
+.search-panel {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(980px, calc(100vw - 32px));
+  max-height: calc(100vh - 92px);
+  overflow: auto;
+  z-index: 120;
+  background: rgba(255,255,255,.98);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(20,20,22,.16);
+}
+
+/* Unit reader mode */
+section.learning-unit {
+  padding: 28px 0;
+}
+
+section.learning-unit .section-head {
+  margin-bottom: 0;
+  cursor: pointer;
+  position: relative;
+  padding-right: 54px;
+}
+
+section.learning-unit .section-head::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 8px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+}
+
+section.learning-unit.unit-open {
+  padding: 72px 0;
+}
+
+section.learning-unit.unit-open .section-head {
+  margin-bottom: 48px;
+}
+
+section.learning-unit.unit-open .section-head::after {
+  content: '−';
+  background: var(--purple-deep);
+}
+
+section.learning-unit:not(.unit-open) .wrap > :not(.section-head) {
+  display: none;
+}
+
+.toc {
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+
+.toc a {
+  display: block;
+  padding: 20px;
+  border-bottom: 1px solid var(--line-soft);
+  border-right: 1px solid var(--line-soft);
+}
+
+.toc a span:first-child {
+  display: block;
+  font-family: 'Century Gothic', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.toc a .n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--purple-mist);
+}
+
+.search-panel.visible { display: block; }
+
+.search-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.search-title {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.search-title span {
+  color: var(--purple-deep);
+}
+
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.filter-btn {
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--ink-muted);
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: var(--purple-mist);
+  border-color: var(--purple);
+  color: var(--purple-deep);
+}
+
+.search-results {
+  padding: 8px 20px 20px;
+}
+
+.search-result {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 16px 0;
+}
+
+.search-result:hover .search-result-title {
+  color: var(--purple-deep);
+}
+
+.search-result-meta {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--purple-deep);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 5px;
+}
+
+.search-result-title {
+  font-family: 'Century Gothic', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.search-result p {
+  font-size: 14px;
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+
+mark {
+  background: var(--purple-mist);
+  color: var(--purple-deep);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.clear-search-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.ant-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20,20,22,.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s;
+  z-index: 130;
+}
+
+.ant-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ant-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(460px, 100vw);
+  height: 100vh;
+  background: var(--cream);
+  border-left: 1px solid var(--line);
+  z-index: 140;
+  transform: translateX(100%);
+  transition: transform .24s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 60px rgba(20,20,22,.18);
+}
+
+.ant-panel.visible { transform: translateX(0); }
+
+.ant-head {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ant-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ant-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.ant-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ant-name h2 {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.ant-name p {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.ant-status {
+  display: inline-flex;
+  margin-top: 4px;
+  border-radius: 999px;
+  background: var(--purple-mist);
+  color: var(--purple-deep);
+  border: 1px solid var(--purple-soft);
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.ant-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: white;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.ant-messages {
+  flex: 1;
+  overflow: auto;
+  padding: 18px 18px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ant-message {
+  max-width: 92%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: white;
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.ant-message.user {
+  margin-left: auto;
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+.ant-message.loading {
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.ant-citations {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ant-citations a {
+  color: var(--purple-deep);
+  background: var(--purple-mist);
+  border: 1px solid var(--purple-soft);
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ant-quick {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 18px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.ant-chip {
+  border-radius: 999px;
+  padding: 7px 10px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.ant-chip:hover {
+  border-color: var(--purple);
+  color: var(--purple-deep);
+}
+
+.ant-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.ant-input {
+  resize: none;
+  min-height: 44px;
+  max-height: 110px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  background: white;
+  color: var(--ink);
+}
+
+.ant-input:focus {
+  outline: none;
+  border-color: var(--purple);
+}
+
+.ant-send {
+  align-self: end;
+  height: 44px;
+  border-radius: 8px;
+  padding: 0 15px;
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .brand-logo img { height: 44px; }
+  .hero-top { gap: 18px; flex-direction: column; }
+  .hero-meta { flex-wrap: wrap; }
+  .tool-actions { width: 100%; }
+  .ask-ant-btn { padding: 9px 11px; }
+  .search-panel {
+    top: 96px;
+    width: calc(100vw - 20px);
+    max-height: calc(100vh - 112px);
+  }
+  .search-panel-head {
+    align-items: flex-start;
+  }
+  .toc { grid-template-columns: 1fr; }
+  .ant-panel {
+    width: 100vw;
+    border-left: none;
+  }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ===== FLOATING UI ===== -->
+<div id="topbar" class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="topbar-logo" aria-label="The antBox Library"><img src="/assets/antbox-logo-cropped.png" alt="Antbox"></a>
+    <div class="topbar-search">
+      <input type="search" id="search" placeholder="Search formulas, patterns, examples..." autocomplete="off" spellcheck="false">
+      <span class="search-hint">/</span>
+    </div>
+    <div class="topbar-progress">
+      <div class="topbar-progress-text"><strong id="progress-count">0</strong> / 90 reviewed</div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+    <button id="ask-ant" class="ask-ant-btn" type="button">Ask Ant</button>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
+<nav id="rail" class="rail" aria-label="Chapter navigation">
+  <a href="#intro"><span class="rail-dot"></span><span class="rail-label">Intro</span></a>
+  <a href="#unit-01"><span class="rail-dot"></span><span class="rail-label">01 · Number Systems</span></a>
+  <a href="#unit-02"><span class="rail-dot"></span><span class="rail-label">02 · Interest</span></a>
+  <a href="#unit-03"><span class="rail-dot"></span><span class="rail-label">03 · Percentage</span></a>
+  <a href="#unit-04"><span class="rail-dot"></span><span class="rail-label">04 · Profit Loss</span></a>
+  <a href="#unit-05"><span class="rail-dot"></span><span class="rail-label">05 · Ratio</span></a>
+  <a href="#unit-06"><span class="rail-dot"></span><span class="rail-label">06 · Averages</span></a>
+  <a href="#unit-07"><span class="rail-dot"></span><span class="rail-label">07 · Time Work</span></a>
+  <a href="#unit-08"><span class="rail-dot"></span><span class="rail-label">08 · Pipes</span></a>
+  <a href="#unit-09"><span class="rail-dot"></span><span class="rail-label">09 · Probability</span></a>
+  <a href="#unit-10"><span class="rail-dot"></span><span class="rail-label">10 · Memory</span></a>
+  <a href="#cheat"><span class="rail-dot"></span><span class="rail-label">Formula Sheet</span></a>
+</nav>
+
+
+<div id="search-panel" class="search-panel" aria-live="polite">
+  <div class="search-panel-head">
+    <div class="search-title"><span id="search-total">0</span> matches in the aptitude vault</div>
+    <button id="clear-search" class="clear-search-btn" type="button" aria-label="Clear search">×</button>
+  </div>
+  <div class="search-filters" role="group" aria-label="Search filters">
+    <button class="filter-btn active" type="button" data-filter="all">All</button>
+    <button class="filter-btn" type="button" data-filter="term">Terms</button>
+    <button class="filter-btn" type="button" data-filter="scenario">Scenarios</button>
+    <button class="filter-btn" type="button" data-filter="cheat">Cheat Sheet</button>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+<div id="ant-overlay" class="ant-overlay"></div>
+<aside id="ant-panel" class="ant-panel" aria-label="Ask Ant assistant" aria-hidden="true">
+  <div class="ant-head">
+    <div class="ant-name">
+      <div class="ant-avatar"><img src="/assets/ant-avatar.png" alt="Ant"></div>
+      <div>
+        <h2>Ant</h2>
+        <p>Answers from this preread first</p>
+        <span id="ant-status" class="ant-status">Checking mode</span>
+      </div>
+    </div>
+    <button id="ant-close" class="ant-close" type="button" aria-label="Close Ant">×</button>
+  </div>
+  <div id="ant-messages" class="ant-messages">
+    <div class="ant-message">Ask me about a formula, number pattern, shortcut, or practice sum from this aptitude vault.</div>
+  </div>
+  <div class="ant-quick">
+    <button class="ant-chip" type="button">Explain this like I’m new to quant</button>
+    <button class="ant-chip" type="button">Give me the formula</button>
+    <button class="ant-chip" type="button">Walk me through an example</button>
+    
+  </div>
+  <form id="ant-form" class="ant-form">
+    <textarea id="ant-input" class="ant-input" rows="1" placeholder="Ask Ant..."></textarea>
+    <button class="ant-send" type="submit">Send</button>
+  </form>
+</aside>
+
+<div id="search-empty" class="search-empty">
+  <div class="big">No matches</div>
+  <p>No terms found for "<span class="empty-query"></span>". Try a different word.</p>
+</div>
+
+<button id="to-top" class="to-top" aria-label="Back to top">↑</button>
+
+
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <a href="/" class="brand-logo" aria-label="Antbox"><img src="/assets/antbox-logo-cropped.png" alt="Antbox"></a>
+      <div class="hero-meta">
+        <span>Pre-Read · Aptitude Vault</span>
+      </div>
+    </div>
+    <div class="hero-eyebrow">Campus Placement · Capsule Prep</div>
+    <h1>The <span class="accent">90 patterns</span> you need to crack any aptitude test.</h1>
+    <p class="hero-sub">This is the working logic of quantitative aptitude: number systems, percentages, ratios, averages, interest, profit-loss, time-work, pipes, probability, and fast reference tables. Not a coaching class. A reference you'll pull up when you blank on a formula mid-mock-test.</p><div class="hero-actions"><button id="hero-ask-ant" class="hero-action" type="button">Ask Ant</button><a class="hero-action secondary" href="#intro">Choose a chapter</a></div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="n">90</div><div class="l">PATTERNS</div></div>
+      <div class="hero-stat"><div class="n">10</div><div class="l">CHAPTERS</div></div>
+      <div class="hero-stat"><div class="n">60+</div><div class="l">EXAMPLES</div></div>
+      <div class="hero-stat"><div class="n">12</div><div class="l">CHEAT CARDS</div></div>
+    </div>
+    <div id="name-suggestion" class="callout aptitude-note">
+      <button class="note-close" type="button" aria-label="Dismiss">×</button>
+      <div class="label">Name idea</div>
+      <p>This book lives inside <strong>The antBox Library</strong>. We're calling the book <strong>Aptitude Vault</strong>; other options are Quant Capsule, Pattern Bank, and The 80 Patterns.</p>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="intro">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">PRE-READ INTRO</div>
+      <h2>Read this once. Bookmark it forever.</h2>
+    </div>
+    <div class="prose" style="max-width: 760px;">
+      <p>Aptitude is one of the few things where vocabulary <em>is</em> the shortcut. A person who instantly recognises "successive percentage" or "relative speed" will solve the question in 30 seconds. You can't yet, and that's fine. But you should recognise every pattern in this vault by the time you sit your first mock.</p>
+      <p>Each section is structured the same way: a tight definition, the formula, worked examples with actual numbers, step-by-step solving, and what to watch for when this shows up in a test.</p>
+    </div>
+    <div class="callout">
+      <div class="label">A note on Indian placement context</div>
+      <p>Most patterns here match TCS NQT, Infosys, Wipro, Accenture, and campus placement formats. Where a pattern is global, it is labelled. Formula variations are noted where exams differ.</p>
+    </div>
+    <div class="toc">
+      <a href="#unit-01"><span>01 · Number Systems & Divisibility</span><span class="n">15</span></a>
+      <a href="#unit-02"><span>02 · Simple & Compound Interest</span><span class="n">11</span></a>
+      <a href="#unit-03"><span>03 · Percentage Cheatsheet</span><span class="n">6</span></a>
+      <a href="#unit-04"><span>04 · Profit & Loss</span><span class="n">10</span></a>
+      <a href="#unit-05"><span>05 · Ratio & Proportion</span><span class="n">10</span></a>
+      <a href="#unit-06"><span>06 · Averages</span><span class="n">8</span></a>
+      <a href="#unit-07"><span>07 · Time & Work</span><span class="n">10</span></a>
+      <a href="#unit-08"><span>08 · Pipes & Cisterns</span><span class="n">8</span></a>
+      <a href="#unit-09"><span>09 · Probability</span><span class="n">10</span></a>
+      <a href="#unit-10"><span>10 · Tables & Quick Memory</span><span class="n">2</span></a>
+      <a href="#cheat"><span>Formula Sheet & Cheat Cards</span><span class="n">12</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section learning-unit" id="unit-01">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">01</div>
+      <h2>Number Systems & Divisibility</h2>
+      <p class="lede">The base layer for quant: types of numbers, factors, HCF, LCM, divisibility, remainders, cyclicity, fractions, decimals, surds, and simplification.</p>
+    </div>
+    <div class="terms">
+      <div class="term">
+        <div class="term-head"><span class="term-num">001</span><div><h3 class="term-name">Types of Numbers <span class="term-alias">natural, whole, integer, rational, irrational</span></h3></div></div>
+        <p class="term-def">Number classification is the first shortcut layer. Natural numbers are counting numbers; whole numbers include zero; integers include negatives; rational numbers can be written as p/q where q is not zero; irrational numbers cannot be written as exact fractions; real numbers include rational and irrational numbers.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>Rational number = <strong>p/q</strong>, where q ≠ 0. Real numbers = Rational + Irrational.</dd>
+          <dt>Example</dt><dd>Classify -5, 0, 7, 3/4, √5. -5 is integer and real; 0 is whole, integer, rational, real; 7 is natural, whole, integer, rational, real; 3/4 is rational and real; √5 is irrational and real.</dd>
+          <dt>Watch for</dt><dd>Zero is a whole number but not a natural number in most placement-test conventions.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">002</span><div><h3 class="term-name">Even & Odd Numbers <span class="term-alias">parity rules</span></h3></div></div>
+        <p class="term-def">Even numbers are divisible by 2. Odd numbers are not divisible by 2. Many questions can be solved just by tracking parity instead of calculating the full value.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>Even = <strong>2n</strong>. Odd = <strong>2n + 1</strong>.</dd>
+          <dt>Example</dt><dd>Find whether 47 + 63 is even or odd. 47 is odd and 63 is odd. Odd + Odd = Even. 47 + 63 = 110, so the answer is <strong>even</strong>.</dd>
+          <dt>Watch for</dt><dd>Even × any integer is always even. Odd × Odd is odd.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">003</span><div><h3 class="term-name">Prime & Composite Numbers <span class="term-alias">factor count test</span></h3></div></div>
+        <p class="term-def">A prime number has exactly two factors: 1 and itself. A composite number has more than two factors. This matters for HCF, LCM, divisibility, and factor-count questions.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>To test n for prime, check divisibility by prime numbers up to <strong>√n</strong>.</dd>
+          <dt>Example</dt><dd>Is 29 prime? √29 ≈ 5.38, so check 2, 3, and 5. 29 is not divisible by any of them. Therefore, <strong>29 is prime</strong>.</dd>
+          <dt>Watch for</dt><dd>Smallest prime = 2. Only even prime = 2. Smallest composite = 4.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">004</span><div><h3 class="term-name">Factors & Multiples <span class="term-alias">divides exactly vs product</span></h3></div></div>
+        <p class="term-def">A factor divides a number exactly. A multiple is a product of a number with an integer. Factor-count questions usually start with prime factorization.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>If n = p<sup>a</sup>q<sup>b</sup>r<sup>c</sup>, then total factors = <strong>(a + 1)(b + 1)(c + 1)</strong>.</dd>
+          <dt>Example</dt><dd>Find number of factors of 72. 72 = 2³ × 3². Total factors = (3 + 1)(2 + 1) = 4 × 3 = <strong>12</strong>.</dd>
+          <dt>Watch for</dt><dd>Do not count multiples when the question asks for factors. "Divides exactly" means factor.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">005</span><div><h3 class="term-name">HCF & LCM <span class="term-alias">highest common factor and least common multiple</span></h3></div></div>
+        <p class="term-def">HCF is the largest number that divides all given numbers exactly. LCM is the smallest number divisible by all given numbers.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>HCF takes the lowest power of common prime factors. LCM takes the highest power of all prime factors. For two numbers: <strong>HCF × LCM = Product of numbers</strong>.</dd>
+          <dt>Example</dt><dd>Two numbers have HCF 12 and LCM 360. If one number is 60, find the other. Other = (12 × 360) / 60 = 4320 / 60 = <strong>72</strong>.</dd>
+          <dt>Watch for</dt><dd>"Largest number that divides..." means HCF. "Smallest number divisible by..." means LCM.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">006</span><div><h3 class="term-name">Divisibility Rules <span class="term-alias">quick divisibility checks</span></h3></div></div>
+        <p class="term-def">Divisibility rules let you test numbers quickly without long division. These are common in number system, simplification, and remainder questions.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>2: last digit even. 3: digit sum divisible by 3. 4: last two digits divisible by 4. 5: last digit 0 or 5. 6: divisible by 2 and 3. 8: last three digits divisible by 8. 9: digit sum divisible by 9. 11: odd-place sum minus even-place sum divisible by 11.</dd>
+          <dt>Example</dt><dd>Check if 7425 is divisible by 3 and 9. Digit sum = 7 + 4 + 2 + 5 = 18. Since 18 is divisible by 3 and 9, 7425 is divisible by both <strong>3 and 9</strong>.</dd>
+          <dt>Watch for</dt><dd>For 6, both tests must pass: divisible by 2 and by 3.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">007</span><div><h3 class="term-name">Remainder Theorem <span class="term-alias">mod shortcut</span></h3></div></div>
+        <p class="term-def">When a number n is divided by d, it can be written as dq + r, where r is the remainder. Mod shortcuts make huge powers manageable.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd><strong>n = dq + r</strong>. If a ≡ b (mod d), then a<sup>k</sup> ≡ b<sup>k</sup> (mod d).</dd>
+          <dt>Example</dt><dd>Find remainder when 7²⁵ is divided by 6. Since 7 ≡ 1 (mod 6), 7²⁵ ≡ 1²⁵ (mod 6). Remainder = <strong>1</strong>.</dd>
+          <dt>Watch for</dt><dd>Reduce the base first. Large powers become easy after taking mod.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">008</span><div><h3 class="term-name">Cyclicity of Last Digit <span class="term-alias">power cycles</span></h3></div></div>
+        <p class="term-def">Last digits repeat in cycles. Once you know the cycle length, divide the power by the cycle length and use the remainder.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>Common cycles: 2 → 2,4,8,6. 3 → 3,9,7,1. 7 → 7,9,3,1. Cycle length is usually 4 for these digits.</dd>
+          <dt>Example</dt><dd>Find last digit of 7¹⁰¹. Cycle of 7 is 7, 9, 3, 1. 101 mod 4 = 1. Take the 1st digit in the cycle. Last digit = <strong>7</strong>.</dd>
+          <dt>Watch for</dt><dd>If power mod cycle length is 0, take the last digit of the cycle, not the first.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">009</span><div><h3 class="term-name">Finding Number Using HCF & LCM <span class="term-alias">missing number trick</span></h3></div></div>
+        <p class="term-def">If HCF, LCM, and one number are known, the other number can be found using the product relation.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>For two numbers: <strong>Number 1 × Number 2 = HCF × LCM</strong>.</dd>
+          <dt>Example</dt><dd>Two numbers have HCF 6 and LCM 180. One number is 30. Other = (6 × 180) / 30 = 1080 / 30 = <strong>36</strong>.</dd>
+          <dt>Watch for</dt><dd>This formula works directly for two numbers. Be careful applying it to three or more numbers.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">010</span><div><h3 class="term-name">Fractions <span class="term-alias">proper, improper, mixed</span></h3></div></div>
+        <p class="term-def">A proper fraction has numerator smaller than denominator. An improper fraction has numerator greater than or equal to denominator. Mixed fractions combine a whole number and a proper fraction.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>Mixed to improper: <strong>a b/c = (ac + b) / c</strong>.</dd>
+          <dt>Example</dt><dd>Convert 3 2/5 into an improper fraction. (3 × 5 + 2) / 5 = (15 + 2) / 5 = <strong>17/5</strong>.</dd>
+          <dt>Watch for</dt><dd>Convert mixed fractions before multiplying or dividing; it reduces mistakes.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">011</span><div><h3 class="term-name">Recurring Decimal to Fraction <span class="term-alias">0.333... method</span></h3></div></div>
+        <p class="term-def">Recurring decimals can be converted to fractions by assigning x, multiplying by a power of 10, and subtracting to remove the repeating part.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>For one repeating digit, let x = 0.aaa..., then 10x - x removes the repetition.</dd>
+          <dt>Example</dt><dd>Convert 0.333... into a fraction. Let x = 0.333... Then 10x = 3.333... Subtract: 10x - x = 3.333... - 0.333..., so 9x = 3. x = 3/9 = <strong>1/3</strong>.</dd>
+          <dt>Watch for</dt><dd>Use 100x or 1000x if two or three digits repeat.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">012</span><div><h3 class="term-name">Surds <span class="term-alias">root simplification</span></h3></div></div>
+        <p class="term-def">Surds are irrational roots left in radical form. Most test questions ask you to simplify them by extracting perfect-square factors.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>√a × √b = <strong>√ab</strong>. √a / √b = <strong>√(a/b)</strong>.</dd>
+          <dt>Example</dt><dd>Simplify √18. Since 18 = 9 × 2, √18 = √9 × √2 = <strong>3√2</strong>.</dd>
+          <dt>Watch for</dt><dd>Always look for the largest perfect-square factor: 4, 9, 16, 25, 36, 49, etc.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">013</span><div><h3 class="term-name">Simplification Tricks <span class="term-alias">BODMAS</span></h3></div></div>
+        <p class="term-def">Simplification questions test order of operations and fraction handling. BODMAS prevents wrong sequencing.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>BODMAS = Brackets, Orders, Division, Multiplication, Addition, Subtraction.</dd>
+          <dt>Example</dt><dd>Simplify 12 + 8 ÷ 4 × 2. First 8 ÷ 4 = 2. Then 2 × 2 = 4. Then 12 + 4 = <strong>16</strong>.</dd>
+          <dt>Watch for</dt><dd>Division and multiplication are solved left to right, not always multiplication first.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">014</span><div><h3 class="term-name">Important Shortcuts <span class="term-alias">fast checks</span></h3></div></div>
+        <p class="term-def">Number System speed comes from three habits: prime factorization, HCF-LCM product checks, and last digit or remainder shortcuts.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>Prime factorization unlocks factor count, HCF, and LCM. Last digit questions use cyclicity. Remainder questions use mod reduction.</dd>
+          <dt>Example</dt><dd>Find last digit of 3⁵⁸. Cycle of 3 is 3, 9, 7, 1. 58 mod 4 = 2. The 2nd digit is <strong>9</strong>.</dd>
+          <dt>Watch for</dt><dd>Do not calculate huge powers directly. Reduce the base, power, or last digit pattern first.</dd>
+        </dl>
+      </div>
+
+      <div class="term">
+        <div class="term-head"><span class="term-num">015</span><div><h3 class="term-name">Common Mistakes <span class="term-alias">number system traps</span></h3></div></div>
+        <p class="term-def">Most errors in this chapter come from mixing definitions or skipping a small condition. Placement tests exploit these traps with close options.</p>
+        <dl class="term-rows">
+          <dt>Formula</dt><dd>Before solving, identify: type of number, divisibility condition, HCF vs LCM wording, required unit, and whether signs matter.</dd>
+          <dt>Example</dt><dd>Question says "largest number that divides 36 and 60 exactly." This is HCF, not LCM. 36 = 2²×3² and 60 = 2²×3×5, so HCF = 2²×3 = <strong>12</strong>.</dd>
+          <dt>Watch for</dt><dd>Ignoring integer signs, using wrong cyclic power, mixing HCF and LCM, and wrong unit conversion.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section learning-unit" id="unit-02">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">02</div>
+      <h2>Simple Interest & Compound Interest</h2>
+      <p class="lede">Principal, rate, time, amount, linear growth, exponential growth, compounding frequency, doubling time, and the important SI-vs-CI difference formulas.</p>
+    </div>
+    <div class="terms">
+      <div class="term"><div class="term-head"><span class="term-num">016</span><div><h3 class="term-name">Basic Interest Terms <span class="term-alias">P, R, T, SI, CI, A</span></h3></div></div><p class="term-def">Interest questions use a fixed vocabulary. Principal is the original money, rate is annual percentage, time is in years, interest is the extra money earned or paid, and amount is principal plus interest.</p><dl class="term-rows"><dt>Formula</dt><dd>P = Principal, R = Rate per annum, T = Time in years, SI = Simple Interest, CI = Compound Interest, A = Amount.</dd><dt>Example</dt><dd>If ₹5,000 is invested at 12% for 3 years, P = 5000, R = 12, T = 3. Use these values directly in SI or CI formula.</dd><dt>Watch for</dt><dd>Convert months to years before substituting: 6 months = 1/2 year, 9 months = 3/4 year.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">017</span><div><h3 class="term-name">Simple Interest <span class="term-alias">linear growth</span></h3></div></div><p class="term-def">Simple Interest grows by the same amount every year because interest is always calculated on the original principal.</p><dl class="term-rows"><dt>Formula</dt><dd><strong>SI = (P × R × T) / 100</strong>. Amount = <strong>P + SI</strong>.</dd><dt>Example</dt><dd>P = ₹1000, R = 10%, T = 2 years. SI = (1000 × 10 × 2) / 100 = ₹200. Amount = 1000 + 200 = <strong>₹1200</strong>.</dd><dt>Watch for</dt><dd>In SI, every year's interest is equal. It does not compound.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">018</span><div><h3 class="term-name">Shortcut Method for SI <span class="term-alias">one-year interest</span></h3></div></div><p class="term-def">For mental math, calculate one year's interest first, then multiply by time.</p><dl class="term-rows"><dt>Formula</dt><dd>Interest for 1 year = <strong>R% of P</strong>. Interest for T years = <strong>T × (R% of P)</strong>.</dd><dt>Example</dt><dd>Find SI on ₹2000 at 5% for 4 years. One-year interest = 5% of 2000 = ₹100. Four-year interest = 4 × 100 = <strong>₹400</strong>.</dd><dt>Watch for</dt><dd>This is fastest when R% of P is easy to calculate.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">019</span><div><h3 class="term-name">Amount Given at Different Times <span class="term-alias">find P and R under SI</span></h3></div></div><p class="term-def">When two SI amounts are given at different times, their difference gives interest for the gap between those years.</p><dl class="term-rows"><dt>Formula</dt><dd>Extra interest = Later amount − Earlier amount. One-year interest = Extra interest / time gap. P = Earlier amount − interest already earned.</dd><dt>Example</dt><dd>Amount after 3 years = ₹900; after 6 years = ₹1200. Extra interest for 3 years = 1200 − 900 = 300. One-year interest = 300/3 = 100. P = 900 − 300 = ₹600. R = (100/600) × 100 = <strong>16⅔%</strong>.</dd><dt>Watch for</dt><dd>Do not treat the earlier amount as principal. It already includes interest.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">020</span><div><h3 class="term-name">Time for Money to Double under SI <span class="term-alias">doubling shortcut</span></h3></div></div><p class="term-def">Under simple interest, money doubles when interest earned equals the principal.</p><dl class="term-rows"><dt>Formula</dt><dd>Time to double under SI = <strong>100 / R</strong>.</dd><dt>Example</dt><dd>At what rate will money double in 8 years under SI? 8 = 100/R, so R = 100/8 = <strong>12.5%</strong>.</dd><dt>Watch for</dt><dd>This shortcut is for SI only, not CI.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">021</span><div><h3 class="term-name">Compound Interest <span class="term-alias">exponential growth</span></h3></div></div><p class="term-def">Compound Interest grows on the principal plus previously earned interest. This is why CI becomes larger than SI over time.</p><dl class="term-rows"><dt>Formula</dt><dd><strong>A = P(1 + R/100)^T</strong>. CI = <strong>A − P</strong>.</dd><dt>Example</dt><dd>P = ₹1000, R = 10%, T = 2. A = 1000(1 + 10/100)² = 1000(1.1)² = 1000 × 1.21 = ₹1210. CI = 1210 − 1000 = <strong>₹210</strong>.</dd><dt>Watch for</dt><dd>CI and SI are equal for 1 year if compounding is annual. Difference starts after that.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">022</span><div><h3 class="term-name">Half-Yearly & Quarterly Compounding <span class="term-alias">frequency adjustment</span></h3></div></div><p class="term-def">When compounding happens more than once a year, divide the annual rate and multiply the number of time periods.</p><dl class="term-rows"><dt>Formula</dt><dd>Half-yearly: A = <strong>P(1 + R/200)^(2T)</strong>. Quarterly: A = <strong>P(1 + R/400)^(4T)</strong>.</dd><dt>Example</dt><dd>Find amount on ₹10,000 at 8% for 1 year compounded half-yearly. Half-yearly rate = 8/2 = 4%. Periods = 2. A = 10000(1.04)² = 10000 × 1.0816 = <strong>₹10,816</strong>.</dd><dt>Watch for</dt><dd>Students often divide rate but forget to multiply time.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">023</span><div><h3 class="term-name">Difference Between CI and SI <span class="term-alias">2-year shortcut</span></h3></div></div><p class="term-def">For 2 years, the difference between compound interest and simple interest has a direct formula.</p><dl class="term-rows"><dt>Formula</dt><dd>For 2 years: <strong>CI − SI = P(R/100)²</strong>.</dd><dt>Example</dt><dd>Difference = ₹25 and R = 10%. 25 = P(10/100)² = P/100. Therefore P = <strong>₹2500</strong>.</dd><dt>Watch for</dt><dd>This exact shortcut is for 2 years with annual compounding.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">024</span><div><h3 class="term-name">When Money Becomes Multiple Times <span class="term-alias">doubling chain</span></h3></div></div><p class="term-def">In compound interest, if money doubles in a fixed period, powers of 2 give higher multiples.</p><dl class="term-rows"><dt>Formula</dt><dd>If money becomes 8 times, then 8 = 2³, so time = <strong>3 × doubling time</strong>.</dd><dt>Example</dt><dd>If money doubles in 6 years under CI, when will it become 8 times? 8 = 2³, so it needs 3 doublings. Time = 3 × 6 = <strong>18 years</strong>.</dd><dt>Watch for</dt><dd>This shortcut assumes the same rate and compounding pattern continues.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">025</span><div><h3 class="term-name">SI vs CI Comparison <span class="term-alias">linear vs exponential</span></h3></div></div><p class="term-def">Simple Interest grows linearly. Compound Interest grows exponentially. CI is always greater than SI after the first year under annual compounding.</p><dl class="term-rows"><dt>Formula</dt><dd>SI adds the same interest each year. CI adds interest on accumulated amount.</dd><dt>Example</dt><dd>On ₹1000 at 10% for 2 years, SI = ₹200 while CI = ₹210. The difference is ₹10 because second-year CI earns interest on first-year interest.</dd><dt>Watch for</dt><dd>The longer the time, the faster CI pulls away from SI.</dd></dl></div>
+
+      <div class="term"><div class="term-head"><span class="term-num">026</span><div><h3 class="term-name">Interest Shortcuts & Mistakes <span class="term-alias">exam traps</span></h3></div></div><p class="term-def">Interest questions become easy when you identify whether the growth is simple or compound before substituting values.</p><dl class="term-rows"><dt>Formula</dt><dd>For SI: linear growth. For CI: exponential growth. Use the 2-year difference formula when CI − SI is given.</dd><dt>Example</dt><dd>Find SI on ₹5000 at 12% for 3 years. SI = (5000 × 12 × 3)/100 = 180000/100 = <strong>₹1800</strong>. Amount = ₹6800.</dd><dt>Watch for</dt><dd>Convert months to years carefully, and do not use the SI doubling shortcut for CI questions.</dd></dl></div>
+    </div>
+  </div>
+</section>
+<section class="section learning-unit" id="unit-03"><div class="wrap"><div class="section-head"><div class="section-num">03</div><h2>Percentage Cheatsheet</h2><p class="lede">Percentage is the language behind discount, profit, ratio change, data interpretation, and comparison questions. First memorise common fractions, then practise converting story language into percent language.</p></div>
+<div class="diagram"><div class="diagram-title">Percent Triangle</div><div class="diagram-sub">Part = Percent × Whole</div><div class="diagram-note">If two values are known, cover the unknown: Percent = Part / Whole; Whole = Part / Percent.</div></div>
+<div class="terms">
+<div class="term"><div class="term-head"><span class="term-num">027</span><div><h3 class="term-name">Percent Meaning <span class="term-alias">per 100</span></h3></div></div><p class="term-def">Percent means out of 100. When you see 25%, read it as 25 out of 100, or 1/4.</p><dl class="term-rows"><dt>Formula</dt><dd>Percent = (part / whole) × 100.</dd><dt>Example</dt><dd>18 marks out of 60 = (18/60) × 100 = 30%.</dd><dt>Study hint</dt><dd>Always ask: what is the whole/base? Most percent mistakes happen when the base changes.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">028</span><div><h3 class="term-name">Core Fraction to Percent <span class="term-alias">3, 4, 5, 6 families</span></h3></div></div><p class="term-def">These conversions make calculations faster because many options are written as percentages.</p><dl class="term-rows"><dt>Formula</dt><dd>1/3 = 33.33%, 2/3 = 66.66%, 1/4 = 25%, 3/4 = 75%, 1/5 = 20%, 1/6 = 16.66%.</dd><dt>Example</dt><dd>If a price falls by 1/4, it falls by 25%.</dd><dt>Study hint</dt><dd>Make flashcards for denominators 3 to 16. Test yourself both directions.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">029</span><div><h3 class="term-name">Seventh, Ninth and Eleventh Fractions <span class="term-alias">recurring percentages</span></h3></div></div><p class="term-def">Placement exams love 1/7, 1/9, and 1/11 style values because they look messy but follow patterns.</p><dl class="term-rows"><dt>Formula</dt><dd>1/7 = 14.28%, 2/7 = 28.56%, 1/9 = 11.11%, 5/9 = 55.55%, 1/11 = 9.09%, 5/11 = 45.45%.</dd><dt>Example</dt><dd>7 out of 11 students passed means 7/11 = 63.63%.</dd><dt>Watch for</dt><dd>Use approximate percentages unless the question asks for exact fraction form.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">030</span><div><h3 class="term-name">Percentage Increase and Decrease <span class="term-alias">change over original</span></h3></div></div><p class="term-def">Increase or decrease is always measured against the original value unless the question clearly changes the base.</p><dl class="term-rows"><dt>Formula</dt><dd>Change % = (change / original) × 100.</dd><dt>Example</dt><dd>Price rises from 500 to 650. Change = 150. Increase % = 150/500 × 100 = 30%.</dd><dt>Watch for</dt><dd>A 20% increase followed by 20% decrease does not return to the original value.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">031</span><div><h3 class="term-name">Successive Percentage Change <span class="term-alias">two changes together</span></h3></div></div><p class="term-def">When two percentage changes happen one after another, use the net change formula instead of adding directly.</p><dl class="term-rows"><dt>Formula</dt><dd>Net change % = a + b + ab/100, where decrease is negative.</dd><dt>Example</dt><dd>Increase 20%, then decrease 10%: 20 - 10 + (20 × -10)/100 = 8% net increase.</dd><dt>Watch for</dt><dd>The second percent is applied on the changed value, not the original value.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">032</span><div><h3 class="term-name">Percent Practice Routine <span class="term-alias">daily drill</span></h3></div></div><p class="term-def">Percentages improve fastest through short daily conversion drills, not long theory sessions.</p><dl class="term-rows"><dt>Practice</dt><dd>Do 20 conversions daily: fraction to percent, percent to fraction, and word problem to formula.</dd><dt>Example</dt><dd>37.5% = 3/8; 12.5% = 1/8; 6.25% = 1/16; 2.5% = 1/40.</dd><dt>Study hint</dt><dd>Say the base out loud before solving: "percent of what?"</dd></dl></div>
+</div></div></section>
+
+<section class="section learning-unit" id="unit-04"><div class="wrap"><div class="section-head"><div class="section-num">04</div><h2>Profit & Loss</h2><p class="lede">Cost price, selling price, marked price, discount, false weight, same-selling-price cases, and partnership links.</p></div><div class="terms">
+<div class="term"><div class="term-head"><span class="term-num">033</span><div><h3 class="term-name">Basic Terms <span class="term-alias">CP, SP, MP</span></h3></div></div><p class="term-def">Cost Price is what the seller pays. Selling Price is what the buyer pays. Marked Price is the printed price before discount.</p><dl class="term-rows"><dt>Formula</dt><dd>Profit = SP - CP. Loss = CP - SP.</dd><dt>Example</dt><dd>CP = 800 and SP = 920. Profit = 120.</dd><dt>Watch for</dt><dd>Profit and loss percentage are calculated on CP unless stated otherwise.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">034</span><div><h3 class="term-name">Profit and Loss Percentage <span class="term-alias">on cost price</span></h3></div></div><p class="term-def">Percent tells how big the profit or loss is compared with the original cost.</p><dl class="term-rows"><dt>Formula</dt><dd>Profit % = Profit/CP × 100. Loss % = Loss/CP × 100.</dd><dt>Example</dt><dd>CP = 500, SP = 600. Profit % = 100/500 × 100 = 20%.</dd><dt>Watch for</dt><dd>Do not divide profit by SP unless the question explicitly asks that.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">035</span><div><h3 class="term-name">Find CP from SP and Profit <span class="term-alias">reverse percentage</span></h3></div></div><p class="term-def">When SP and profit percent are given, CP is hidden inside the final value.</p><dl class="term-rows"><dt>Formula</dt><dd>CP = SP × 100 / (100 + Profit%).</dd><dt>Example</dt><dd>Profit = 20%, SP = 600. CP = 600 × 100/120 = 500.</dd><dt>Study hint</dt><dd>Think: after profit, CP became 120% of itself.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">036</span><div><h3 class="term-name">Find SP from CP and Loss <span class="term-alias">loss multiplier</span></h3></div></div><p class="term-def">Loss reduces the cost price by the given percentage.</p><dl class="term-rows"><dt>Formula</dt><dd>SP = CP × (1 - Loss%/100).</dd><dt>Example</dt><dd>CP = 800, loss = 25%. SP = 800 × 75/100 = 600.</dd><dt>Watch for</dt><dd>For profit, use 100 + P. For loss, use 100 - L.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">037</span><div><h3 class="term-name">Marked Price and Discount <span class="term-alias">MP to SP</span></h3></div></div><p class="term-def">Discount is a reduction from the marked price, not from the cost price.</p><dl class="term-rows"><dt>Formula</dt><dd>Discount = MP - SP. Discount % = Discount/MP × 100. SP = MP(1 - d/100).</dd><dt>Example</dt><dd>MP = 1000, discount = 20%. SP = 1000 × 0.8 = 800.</dd><dt>Watch for</dt><dd>Profit with discount questions usually need MP → SP → CP.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">038</span><div><h3 class="term-name">Successive Discounts <span class="term-alias">net discount</span></h3></div></div><p class="term-def">Two discounts are applied one after another, so they cannot be directly added.</p><dl class="term-rows"><dt>Formula</dt><dd>Net discount = a + b - ab/100.</dd><dt>Example</dt><dd>Discounts 20% and 10% give 20 + 10 - 2 = 28% net discount.</dd><dt>Watch for</dt><dd>Successive discounts of 20% and 10% are not 30%.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">039</span><div><h3 class="term-name">Profit with Discount <span class="term-alias">MP, discount, profit</span></h3></div></div><p class="term-def">First find SP after discount, then use the profit percentage to find CP.</p><dl class="term-rows"><dt>Example</dt><dd>MP = 1000, discount = 20%, profit = 25%. SP = 800. CP = 800 × 100/125 = 640.</dd><dt>Study hint</dt><dd>Draw the chain: MP → discount → SP → profit relation → CP.</dd><dt>Watch for</dt><dd>Do not apply profit percentage on MP.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">040</span><div><h3 class="term-name">False Weight Problem <span class="term-alias">less weight trick</span></h3></div></div><p class="term-def">If a trader gives less quantity for the price of full quantity, the missing weight becomes hidden profit.</p><dl class="term-rows"><dt>Formula</dt><dd>Profit % = Weight difference / Actual weight used × 100.</dd><dt>Example</dt><dd>Uses 900g instead of 1kg. Profit % = 100/900 × 100 = 11.11%.</dd><dt>Watch for</dt><dd>Actual weight used goes in the denominator.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">041</span><div><h3 class="term-name">Equal Selling Price Case <span class="term-alias">same SP loss</span></h3></div></div><p class="term-def">When two items are sold at the same SP, one at gain a% and one at loss a%, there is always a net loss.</p><dl class="term-rows"><dt>Formula</dt><dd>Net loss % = a²/100.</dd><dt>Example</dt><dd>Gain 20% on one item and loss 20% on another at equal SP gives 20²/100 = 4% loss.</dd><dt>Watch for</dt><dd>Equal percentage gain and loss does not mean no profit-no loss.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">042</span><div><h3 class="term-name">Buy X Get Y Free <span class="term-alias">effective discount</span></h3></div></div><p class="term-def">Free-item offers can be converted to an effective discount percentage.</p><dl class="term-rows"><dt>Formula</dt><dd>Effective discount % = y/(x + y) × 100.</dd><dt>Example</dt><dd>Buy 2 get 1 free = 1/(2+1) × 100 = 33.33% discount.</dd><dt>Study hint</dt><dd>Count total items received, then ask how many were free.</dd></dl></div>
+</div></div></section>
+
+<section class="section learning-unit" id="unit-05"><div class="wrap"><div class="section-head"><div class="section-num">05</div><h2>Ratio & Proportion</h2><p class="lede">Ratios compare same-kind quantities. Most questions become easy when you convert every quantity into parts.</p></div><div class="diagram"><div class="diagram-title">Parts Model</div><div class="diagram-sub">Total value ÷ total parts = one part</div><div class="diagram-note">Then multiply one part by each ratio number.</div></div><div class="terms">
+<div class="term"><div class="term-head"><span class="term-num">043</span><div><h3 class="term-name">Ratio and Proportion Basics <span class="term-alias">a:b and a/b</span></h3></div></div><p class="term-def">A ratio compares two quantities of the same kind. A proportion says two ratios are equal.</p><dl class="term-rows"><dt>Formula</dt><dd>a:b = a/b. If a:b :: c:d, then a/b = c/d and ad = bc.</dd><dt>Example</dt><dd>2:3 equals 4:6 because 2/3 = 4/6.</dd><dt>Watch for</dt><dd>Convert to the same units before comparing.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">044</span><div><h3 class="term-name">Properties of Ratio <span class="term-alias">scale and inverse</span></h3></div></div><p class="term-def">A ratio can be multiplied or divided by the same number without changing its meaning.</p><dl class="term-rows"><dt>Formula</dt><dd>a:b = ka:kb = a/k:b/k. Inverse ratio = b:a.</dd><dt>Example</dt><dd>6:9 reduces to 2:3 by dividing both terms by 3.</dd><dt>Watch for</dt><dd>Never add or subtract the same number from both sides of a ratio to simplify it.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">045</span><div><h3 class="term-name">Continued Ratio <span class="term-alias">chain ratio</span></h3></div></div><p class="term-def">Continued ratio links more than two quantities by matching the common term.</p><dl class="term-rows"><dt>Formula</dt><dd>If a:b = m:n and b:c = p:q, then make b same using LCM.</dd><dt>Example</dt><dd>a:b = 2:3 and b:c = 4:5. LCM of 3 and 4 is 12, so a:b:c = 8:12:15.</dd><dt>Watch for</dt><dd>The shared term must match before combining ratios.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">046</span><div><h3 class="term-name">Compound Ratio <span class="term-alias">multiply ratios</span></h3></div></div><p class="term-def">Compound ratio multiplies corresponding terms of two ratios.</p><dl class="term-rows"><dt>Formula</dt><dd>(a:b) × (c:d) = ac:bd.</dd><dt>Example</dt><dd>(2:3) × (4:5) = 8:15.</dd><dt>Study hint</dt><dd>Use this when two comparisons happen together.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">047</span><div><h3 class="term-name">Divide a Quantity in Ratio <span class="term-alias">sum given</span></h3></div></div><p class="term-def">If total and ratio are given, first find the value of one part.</p><dl class="term-rows"><dt>Formula</dt><dd>First part = S × a/(a+b). Second part = S × b/(a+b).</dd><dt>Example</dt><dd>Divide 300 in ratio 2:3. Total parts = 5. One part = 60. Parts = 120 and 180.</dd><dt>Watch for</dt><dd>Use total parts, not difference of parts.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">048</span><div><h3 class="term-name">When Difference is Given <span class="term-alias">gap parts</span></h3></div></div><p class="term-def">When difference is given, compare the gap between ratio parts.</p><dl class="term-rows"><dt>Example</dt><dd>a:b = 3:5, difference = 20. Gap = 2 parts = 20, so one part = 10. a = 30, b = 50.</dd><dt>Study hint</dt><dd>If sum is given, add parts. If difference is given, subtract parts.</dd><dt>Watch for</dt><dd>Do not use sum logic for difference questions.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">049</span><div><h3 class="term-name">Three-Term Sum <span class="term-alias">a:b:c</span></h3></div></div><p class="term-def">For three-term ratios, the same parts method works.</p><dl class="term-rows"><dt>Example</dt><dd>a:b:c = 3:4:5 and sum = 240. Total parts = 12. One part = 20. Values are 60, 80, 100.</dd><dt>Watch for</dt><dd>Add all ratio terms before dividing.</dd><dt>Practice</dt><dd>Try sums with 2 terms, then 3 terms, then chain ratios.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">050</span><div><h3 class="term-name">Comparison Type <span class="term-alias">substitution method</span></h3></div></div><p class="term-def">When expressions are given, substitute ratio values directly.</p><dl class="term-rows"><dt>Example</dt><dd>If a:b = 3:2, find (4a+5b):(5a-2b). Substitute a=3, b=2: (12+10):(15-4) = 22:11 = 2:1.</dd><dt>Study hint</dt><dd>Choose small values from the ratio instead of solving equations.</dd><dt>Watch for</dt><dd>Substitute before simplifying.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">051</span><div><h3 class="term-name">Direct and Inverse Variation <span class="term-alias">x proportional y</span></h3></div></div><p class="term-def">Variation tells whether two values move in the same direction or opposite directions.</p><dl class="term-rows"><dt>Formula</dt><dd>Direct: x ∝ y, so x/y = constant. Inverse: x ∝ 1/y, so xy = constant.</dd><dt>Example</dt><dd>More workers means fewer days for same work, so workers and days are inverse.</dd><dt>Watch for</dt><dd>Identify direction before writing the equation.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">052</span><div><h3 class="term-name">Ratio Mistakes <span class="term-alias">units and LCM</span></h3></div></div><p class="term-def">Common mistakes are mixing units, using wrong LCM in chain ratios, and confusing sum with difference.</p><dl class="term-rows"><dt>Checklist</dt><dd>Same units, same shared term, correct total parts, correct base.</dd><dt>Example</dt><dd>2 hours : 30 minutes is not 2:30. Convert 2 hours to 120 minutes, so ratio = 120:30 = 4:1.</dd><dt>Study hint</dt><dd>Write units beside every number until you stop making conversion errors.</dd></dl></div>
+</div></div></section>
+
+<section class="section learning-unit" id="unit-06"><div class="wrap"><div class="section-head"><div class="section-num">06</div><h2>Averages</h2><p class="lede">Average questions are total-sum questions wearing simple clothes. Keep track of total sum, number of observations, and the changed value.</p></div><div class="diagram"><div class="diagram-title">Average Balance</div><div class="diagram-sub">Total Sum = Average × Number of Observations</div><div class="diagram-note">For every new average question, convert average back into total sum first.</div></div><div class="terms">
+<div class="term"><div class="term-head"><span class="term-num">053</span><div><h3 class="term-name">Average Basic Formula</h3></div></div><p class="term-def">Average is the equal share of all observations.</p><dl class="term-rows"><dt>Formula</dt><dd>Average = Sum of all observations / Number of observations.</dd><dt>Example</dt><dd>Average of 10, 20, 30 = 60/3 = 20.</dd><dt>Study hint</dt><dd>Whenever stuck, write Total = Average × Count.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">054</span><div><h3 class="term-name">Average of First N Natural Numbers</h3></div></div><p class="term-def">The average of a continuous natural-number series is the middle value.</p><dl class="term-rows"><dt>Formula</dt><dd>Average of 1 to n = (n + 1)/2.</dd><dt>Example</dt><dd>Average of 1 to 50 = 51/2 = 25.5.</dd><dt>Watch for</dt><dd>This works for natural numbers starting at 1.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">055</span><div><h3 class="term-name">Average of Even and Odd Series</h3></div></div><p class="term-def">For equally spaced even or odd series, average is still the middle value.</p><dl class="term-rows"><dt>Formula</dt><dd>First n even natural numbers average = n + 1. First n odd numbers average = n.</dd><dt>Example</dt><dd>First 10 even numbers average = 11. First 10 odd numbers average = 10.</dd><dt>Watch for</dt><dd>Check whether the wording says natural even numbers or any even numbers in a range.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">056</span><div><h3 class="term-name">Average of Squares and Cubes</h3></div></div><p class="term-def">These formulas help when the question gives squared or cubed observations.</p><dl class="term-rows"><dt>Formula</dt><dd>Average of squares of first n natural numbers = (n+1)(2n+1)/6. Average of cubes = n(n+1)^2/4.</dd><dt>Example</dt><dd>For n=5, average of squares = 6×11/6 = 11.</dd><dt>Practice</dt><dd>Do not memorise blindly; test with n=2 and n=3 to understand the formula.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">057</span><div><h3 class="term-name">Even Number of Observations</h3></div></div><p class="term-def">When values are in order and count is even, the average is the average of the two middle terms.</p><dl class="term-rows"><dt>Formula</dt><dd>Average = (first middle term + last middle term) / 2.</dd><dt>Example</dt><dd>Average of 2, 4, 6, 8 = (4+6)/2 = 5.</dd><dt>Watch for</dt><dd>This applies only when terms are equally placed around the middle or you are finding median-style average of a sequence.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">058</span><div><h3 class="term-name">Change in Average</h3></div></div><p class="term-def">When average changes after adding or removing a value, compare old total and new total.</p><dl class="term-rows"><dt>Formula</dt><dd>Change in value = New average × New count - Old average × Old count.</dd><dt>Example</dt><dd>Average of 5 numbers is 20. Add one number and new average is 22. New value = 22×6 - 20×5 = 32.</dd><dt>Study hint</dt><dd>Make a two-line table: old total, new total.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">059</span><div><h3 class="term-name">New Average</h3></div></div><p class="term-def">After a change, average is just the new total divided by the new count.</p><dl class="term-rows"><dt>Formula</dt><dd>New Average = New Total Sum / New Number of Observations.</dd><dt>Example</dt><dd>Current total = 100 for 5 people. Add 20. New average = 120/6 = 20.</dd><dt>Watch for</dt><dd>If one value is replaced, count stays the same.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">060</span><div><h3 class="term-name">Average Practice Method</h3></div></div><p class="term-def">Average problems become easy when you stop thinking in averages and start thinking in totals.</p><dl class="term-rows"><dt>Practice</dt><dd>Convert every average sentence to total sum before solving.</dd><dt>Example</dt><dd>"Average age of 8 people is 24" means total age = 8×24 = 192.</dd><dt>Study hint</dt><dd>Underline count changes: added, removed, replaced, joined, left.</dd></dl></div>
+</div></div></section>
+
+<section class="section learning-unit" id="unit-07"><div class="wrap"><div class="section-head"><div class="section-num">07</div><h2>Time & Work</h2><p class="lede">Treat work like a tank of units. Each person does some units per day, and combined work is found by adding rates.</p></div><div class="diagram"><div class="diagram-title">LCM Work Box</div><div class="diagram-sub">Total Work = LCM of individual times</div><div class="diagram-note">Person's one-day work = Total Work / Days taken alone.</div></div><div class="terms">
+<div class="term"><div class="term-head"><span class="term-num">061</span><div><h3 class="term-name">Basic Work Formula</h3></div></div><p class="term-def">Work equals rate multiplied by time. Rate means work done in one unit of time.</p><dl class="term-rows"><dt>Formula</dt><dd>Work = Rate × Time. Rate = Work / Time.</dd><dt>Example</dt><dd>If 30 units are done in 5 days, rate = 6 units/day.</dd><dt>Study hint</dt><dd>Write rate beside every person before combining them.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">062</span><div><h3 class="term-name">LCM Method</h3></div></div><p class="term-def">LCM method avoids fractions by turning total work into a convenient unit number.</p><dl class="term-rows"><dt>Example</dt><dd>A finishes in 10 days, B in 20 days. Total work = LCM(10,20)=20. A rate=2, B rate=1, together rate=3. Time=20/3 days.</dd><dt>Watch for</dt><dd>LCM is total work, not answer time.</dd><dt>Practice</dt><dd>Use LCM method for all first-attempt work problems.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">063</span><div><h3 class="term-name">Three Person Concept</h3></div></div><p class="term-def">If A, B, and A+B+C are known, find C by subtracting A and B rates from total team rate.</p><dl class="term-rows"><dt>Example</dt><dd>A=15 days, B=20 days, A+B+C=8 days. Total work=120. A=8/day, B=6/day, team=15/day. C=1/day, so C takes 120 days.</dd><dt>Watch for</dt><dd>Subtract rates, not days.</dd><dt>Study hint</dt><dd>Days are inversely related to efficiency.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">064</span><div><h3 class="term-name">Leaving Midway</h3></div></div><p class="term-def">When someone leaves, split the problem into phases: together work first, then remaining work alone.</p><dl class="term-rows"><dt>Example</dt><dd>A=10 days, B=20 days. Total work=20. Rates: A=2, B=1. Work in 4 days together = 12. Remaining = 8. A alone time = 8/2 = 4 days.</dd><dt>Watch for</dt><dd>Do not use combined rate after someone leaves.</dd><dt>Practice</dt><dd>Draw a timeline with phase 1 and phase 2.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">065</span><div><h3 class="term-name">Men × Days = Work</h3></div></div><p class="term-def">For same type of workers doing same work, men and days are inversely related.</p><dl class="term-rows"><dt>Formula</dt><dd>M1D1 = M2D2.</dd><dt>Example</dt><dd>25 men take 12 days. 30 men take x days. 25×12=30x, so x=10 days.</dd><dt>Watch for</dt><dd>Only use directly when worker efficiency is same.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">066</span><div><h3 class="term-name">Men and Women Problems</h3></div></div><p class="term-def">Convert different worker types into unit efficiencies before solving.</p><dl class="term-rows"><dt>Example</dt><dd>If 1 man = 2 units and 1 woman = 1 unit, then 15 men + 20 women = 50 units/day. If they work 10 days, total work = 500 units.</dd><dt>Study hint</dt><dd>Convert people into work-rate units first.</dd><dt>Watch for</dt><dd>Do not add people directly if their efficiencies differ.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">067</span><div><h3 class="term-name">Man Day Hour Concept</h3></div></div><p class="term-def">When daily hours differ, total work depends on men, days, and hours.</p><dl class="term-rows"><dt>Formula</dt><dd>Work = M × D × H.</dd><dt>Example</dt><dd>A takes 6 days at 5 hours/day, total hours=30. B takes 15 days at 3 hours/day, total hours=45. Use LCM(30,45)=90 units.</dd><dt>Watch for</dt><dd>Convert to total hours before finding rate.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">068</span><div><h3 class="term-name">Efficiency Concept</h3></div></div><p class="term-def">Efficiency and time move opposite to each other. More efficient means less time.</p><dl class="term-rows"><dt>Example</dt><dd>If A is 60% more efficient than B, A:B efficiency = 160:100 = 8:5, so time ratio = 5:8.</dd><dt>Watch for</dt><dd>Invert efficiency ratio to get time ratio.</dd><dt>Study hint</dt><dd>Write Efficiency ↑, Time ↓.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">069</span><div><h3 class="term-name">Alternate Days</h3></div></div><p class="term-def">When people work on alternate days, group work into cycles.</p><dl class="term-rows"><dt>Example</dt><dd>A=20 days, B=30 days. Total work=60. A=3/day, B=2/day. Two-day cycle does 5 units. 60/5=12 cycles, so 24 days.</dd><dt>Watch for</dt><dd>If work is not exactly completed in cycles, solve the remaining days one by one.</dd><dt>Practice</dt><dd>Always name who starts first.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">070</span><div><h3 class="term-name">Time & Work Common Traps</h3></div></div><p class="term-def">The main traps are adding days instead of rates and forgetting that efficiency is inverse of time.</p><dl class="term-rows"><dt>Checklist</dt><dd>Total work, individual rates, combined rate, remaining work, final time.</dd><dt>Example</dt><dd>If A takes 10 days and B takes 20 days, together time is not 30 days. It is 20/3 days by LCM method.</dd><dt>Study hint</dt><dd>Never combine workers before converting to rates.</dd></dl></div>
+</div></div></section>
+
+<section class="section learning-unit" id="unit-08"><div class="wrap"><div class="section-head"><div class="section-num">08</div><h2>Pipes & Cisterns</h2><p class="lede">Pipes are time-work questions with signs. Filling pipes are positive; emptying pipes are negative.</p></div><div class="diagram"><div class="diagram-title">Tank Sign Diagram</div><div class="diagram-sub">Filling pipe = + rate · Emptying pipe = - rate</div><div class="diagram-note">Net rate decides whether the tank fills, empties, or never fills.</div></div><div class="terms">
+<div class="term"><div class="term-head"><span class="term-num">071</span><div><h3 class="term-name">Basic Pipe Concept</h3></div></div><p class="term-def">Tank capacity is total work. A pipe's rate is tank capacity divided by time.</p><dl class="term-rows"><dt>Formula</dt><dd>Rate = Work / Time. Filling is positive; emptying is negative.</dd><dt>Example</dt><dd>Tank capacity 20 units, pipe fills in 10 hours, rate = +2 units/hour.</dd><dt>Watch for</dt><dd>Use negative sign for leaks and outlets.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">072</span><div><h3 class="term-name">Unit Method for Two Filling Pipes</h3></div></div><p class="term-def">Use LCM as tank capacity and add filling rates.</p><dl class="term-rows"><dt>Example</dt><dd>A fills in 10 hours, B in 20 hours. TC=20. A=2/hr, B=1/hr, total=3/hr. Time=20/3 hours.</dd><dt>Study hint</dt><dd>This is the same as Time & Work LCM method.</dd><dt>Watch for</dt><dd>Capacity is in tank units, not litres unless given.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">073</span><div><h3 class="term-name">Inlet and Outlet Together</h3></div></div><p class="term-def">When one pipe fills and one empties, subtract the outlet rate.</p><dl class="term-rows"><dt>Example</dt><dd>A fills in 10 hours, B empties in 40 hours. TC=40. A=+4/hr, B=-1/hr, net=3/hr. Time=40/3 hours.</dd><dt>Watch for</dt><dd>Forgetting the negative sign changes the answer completely.</dd><dt>Practice</dt><dd>Write + or - before every pipe rate.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">074</span><div><h3 class="term-name">Leak in the Tank</h3></div></div><p class="term-def">A leak is an emptying pipe. Compare the filling rate with the net filling rate.</p><dl class="term-rows"><dt>Example</dt><dd>A fills in 12 hours, but leak makes it fill in 15 hours. TC=60. Filling=5/hr, net=4/hr, leak=1/hr. Emptying time=60 hours.</dd><dt>Watch for</dt><dd>Leak rate = original filling rate - net rate.</dd><dt>Study hint</dt><dd>Write what happens without leak and with leak.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">075</span><div><h3 class="term-name">Alternate Opening of Pipes</h3></div></div><p class="term-def">For alternate pipes, solve in cycles just like alternate-day work.</p><dl class="term-rows"><dt>Example</dt><dd>A fills in 10 hours, B empties in 20 hours. TC=20. A=+2/hr, B=-1/hr. In 2 hours, net +1 unit. So 20 units takes 40 hours.</dd><dt>Watch for</dt><dd>Check whether the tank completes during a positive pipe's turn.</dd><dt>Practice</dt><dd>Group one full cycle, then handle leftover work.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">076</span><div><h3 class="term-name">Two Filling, One Emptying</h3></div></div><p class="term-def">Add all filling rates and subtract the emptying rate.</p><dl class="term-rows"><dt>Example</dt><dd>A fills in 10, B fills in 15, C empties in 30. TC=30. Rates: +3,+2,-1. Net=4/hr. Time=30/4=7.5 hours.</dd><dt>Watch for</dt><dd>Net rate can be zero or negative; then tank may never fill.</dd><dt>Study hint</dt><dd>Put rates in a single line: +3 +2 -1 = 4.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">077</span><div><h3 class="term-name">Partial Filling and Emptying</h3></div></div><p class="term-def">If tank starts half full, solve only the remaining half or the filled half depending on the question.</p><dl class="term-rows"><dt>Example</dt><dd>Tank filled in 8 hours and empties in 12 hours when full. If half tank must empty, TC=24, half=12, emptying rate=2/hr, time=6 hours.</dd><dt>Watch for</dt><dd>Do not solve for full tank when question asks half tank.</dd><dt>Practice</dt><dd>Mark starting level: empty, half, full.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">078</span><div><h3 class="term-name">Fractional Part Problems</h3></div></div><p class="term-def">If rates are already given as fractions of tank per hour, add/subtract them directly.</p><dl class="term-rows"><dt>Example</dt><dd>One pipe fills 1/3 tank per hour, another empties 1/6 tank per hour. Net = 1/3 - 1/6 = 1/6 tank/hour. Time=6 hours.</dd><dt>Watch for</dt><dd>Take LCM of fractions if mental addition is hard.</dd><dt>Study hint</dt><dd>Fraction rate means you already know work per hour.</dd></dl></div>
+</div></div></section>
+
+<section class="section learning-unit" id="unit-09"><div class="wrap"><div class="section-head"><div class="section-num">09</div><h2>Probability</h2><p class="lede">Probability is favourable outcomes divided by total outcomes. The skill is listing the sample space without missing cases.</p></div><div class="diagram"><div class="diagram-title">Probability Tree</div><div class="diagram-sub">Start → Branch every possible outcome → Count favourable leaves</div><div class="diagram-note">Use trees for coins, dice, cards, and conditional probability.</div></div><div class="terms">
+<div class="term"><div class="term-head"><span class="term-num">079</span><div><h3 class="term-name">Basic Probability Formula</h3></div></div><p class="term-def">Probability measures the chance of an event.</p><dl class="term-rows"><dt>Formula</dt><dd>P(E) = Number of favourable outcomes / Total number of outcomes.</dd><dt>Example</dt><dd>Probability of getting a king from a deck = 4/52 = 1/13.</dd><dt>Watch for</dt><dd>Favourable outcomes must be part of the total sample space.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">080</span><div><h3 class="term-name">Sample Space</h3></div></div><p class="term-def">Sample space is the set of all possible outcomes.</p><dl class="term-rows"><dt>Example</dt><dd>Coin toss sample space = {H,T}. Die roll sample space = {1,2,3,4,5,6}.</dd><dt>Study hint</dt><dd>Write sample space before solving if the question is small.</dd><dt>Watch for</dt><dd>Do not count impossible outcomes.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">081</span><div><h3 class="term-name">Range of Probability</h3></div></div><p class="term-def">Probability is always between 0 and 1.</p><dl class="term-rows"><dt>Formula</dt><dd>0 ≤ P(E) ≤ 1. P(E)=0 means impossible; P(E)=1 means certain.</dd><dt>Example</dt><dd>Probability of rolling 7 on one die is 0. Probability of rolling 1 to 6 is 1.</dd><dt>Watch for</dt><dd>If your answer is more than 1, your counting is wrong.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">082</span><div><h3 class="term-name">Complementary Events</h3></div></div><p class="term-def">Complement means the event does not happen.</p><dl class="term-rows"><dt>Formula</dt><dd>P(E') = 1 - P(E).</dd><dt>Example</dt><dd>Probability of not getting a head in one toss = 1 - 1/2 = 1/2.</dd><dt>Study hint</dt><dd>Use complement for "at least one" questions.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">083</span><div><h3 class="term-name">Addition Theorem</h3></div></div><p class="term-def">Use addition theorem when the question asks for A or B.</p><dl class="term-rows"><dt>Formula</dt><dd>P(A ∪ B) = P(A) + P(B) - P(A ∩ B).</dd><dt>Example</dt><dd>For mutually exclusive events, intersection is zero, so add directly.</dd><dt>Watch for</dt><dd>Subtract overlap when events can happen together.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">084</span><div><h3 class="term-name">Independent Events</h3></div></div><p class="term-def">Independent events do not affect each other.</p><dl class="term-rows"><dt>Formula</dt><dd>P(A ∩ B) = P(A) × P(B).</dd><dt>Example</dt><dd>Tossing two coins: P(HH) = 1/2 × 1/2 = 1/4.</dd><dt>Watch for</dt><dd>Independent is not the same as mutually exclusive.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">085</span><div><h3 class="term-name">Conditional Probability</h3></div></div><p class="term-def">Conditional probability means probability of A when B has already happened.</p><dl class="term-rows"><dt>Formula</dt><dd>P(A|B) = P(A ∩ B) / P(B).</dd><dt>Example</dt><dd>If only even die outcomes are allowed {2,4,6}, probability of 6 given even = 1/3.</dd><dt>Study hint</dt><dd>Change the sample space after "given".</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">086</span><div><h3 class="term-name">Probability in Cards</h3></div></div><p class="term-def">A deck has 52 cards, 4 suits, 13 cards per suit, and 12 face cards.</p><dl class="term-rows"><dt>Formula</dt><dd>Hearts 13, Diamonds 13, Spades 13, Clubs 13. Kings=4, Queens=4, Aces=4.</dd><dt>Example</dt><dd>Probability of drawing a red card = 26/52 = 1/2.</dd><dt>Watch for</dt><dd>Face cards are J, Q, K only, usually 12 cards.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">087</span><div><h3 class="term-name">Probability in Dice and Coins</h3></div></div><p class="term-def">One die has 6 outcomes, two dice have 36 outcomes. One coin has 2 outcomes, n coins have 2^n outcomes.</p><dl class="term-rows"><dt>Example</dt><dd>Sum 7 with two dice has 6 favourable outcomes, so probability = 6/36 = 1/6.</dd><dt>Study hint</dt><dd>For dice sums, make a quick 6×6 grid or remember common counts.</dd><dt>Watch for</dt><dd>Two dice outcomes are ordered: (1,6) and (6,1) are different.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">088</span><div><h3 class="term-name">At Least and At Most</h3></div></div><p class="term-def">At least means minimum condition. At most means maximum condition. Complement is often faster.</p><dl class="term-rows"><dt>Formula</dt><dd>At least one = 1 - none.</dd><dt>Example</dt><dd>At least one head in 2 tosses = 1 - P(TT) = 1 - 1/4 = 3/4.</dd><dt>Watch for</dt><dd>Read "at least" and "exactly" carefully.</dd></dl></div>
+</div></div></section>
+
+<section class="section learning-unit" id="unit-10"><div class="wrap"><div class="section-head"><div class="section-num">10</div><h2>Tables & Quick Memory</h2><p class="lede">Some aptitude speed comes from memory: square numbers, common fraction percentages, and small benchmark values.</p></div><div class="terms">
+<div class="term"><div class="term-head"><span class="term-num">089</span><div><h3 class="term-name">Square Numbers 1 to 100 <span class="term-alias">reference table</span></h3></div></div><p class="term-def">Squares are useful in simplification, roots, averages of squares, probability shortcuts, and approximation.</p><dl class="term-rows"><dt>Must know</dt><dd>1²=1, 10²=100, 15²=225, 20²=400, 25²=625, 30²=900, 40²=1600, 50²=2500, 75²=5625, 100²=10000.</dd><dt>Practice</dt><dd>Memorise 1 to 30 perfectly first, then learn 31 to 100 in blocks of 10.</dd><dt>Hint</dt><dd>(n+1)² = n² + 2n + 1 helps build the table quickly.</dd></dl></div>
+<div class="term"><div class="term-head"><span class="term-num">090</span><div><h3 class="term-name">How to Study This Vault <span class="term-alias">practice plan</span></h3></div></div><p class="term-def">The fastest way to learn aptitude is pattern recognition plus timed repetition.</p><dl class="term-rows"><dt>Plan</dt><dd>Day 1: read formulas. Day 2: solve 5 sums per chapter. Day 3: revise mistakes. Day 4: mixed timed quiz.</dd><dt>Method</dt><dd>For every wrong answer, write the trigger: wrong formula, wrong base, unit error, sign error, or calculation slip.</dd><dt>Study hint</dt><dd>Ask Ant for "give me 5 practice sums on this chapter" after reading each unit.</dd></dl></div>
+</div></div></section>
+
+<section class="section learning-unit" id="cheat">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">FORMULA SHEET</div>
+      <h2>Formula Sheet & Cheat Cards</h2>
+      <p class="lede">A compact revision strip for formulas and shortcuts pulled from the filled aptitude chapters.</p>
+    </div>
+    <div class="cheat-grid">
+      <div class="cheat">
+        <h4>Number System Anchors</h4>
+        <ul>
+          <li><strong>Even / Odd</strong>Even = 2n; Odd = 2n + 1</li>
+          <li><strong>Factors</strong>If n = p^a q^b, factors = (a+1)(b+1)</li>
+          <li><strong>HCF × LCM</strong>For two numbers, product = HCF × LCM</li>
+          <li><strong>Remainder</strong>n = dq + r</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Last Digit Cycles</h4>
+        <ul>
+          <li><strong>2</strong>2, 4, 8, 6</li>
+          <li><strong>3</strong>3, 9, 7, 1</li>
+          <li><strong>7</strong>7, 9, 3, 1</li>
+          <li><strong>Rule</strong>Power mod 4 tells the position in cycle</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Simple Interest</h4>
+        <ul>
+          <li><strong>SI</strong>(P × R × T) / 100</li>
+          <li><strong>Amount</strong>P + SI</li>
+          <li><strong>Double</strong>Time = 100 / R</li>
+          <li><strong>Shortcut</strong>One-year interest × years</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Compound Interest</h4>
+        <ul>
+          <li><strong>Amount</strong>P(1 + R/100)^T</li>
+          <li><strong>CI</strong>Amount − Principal</li>
+          <li><strong>Half-yearly</strong>Rate = R/2, Time = 2T</li>
+          <li><strong>Quarterly</strong>Rate = R/4, Time = 4T</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>SI vs CI Traps</h4>
+        <ul>
+          <li><strong>Growth</strong>SI is linear; CI is exponential</li>
+          <li><strong>2 years</strong>CI − SI = P(R/100)^2</li>
+          <li><strong>Multiple</strong>8 times = 3 doublings</li>
+          <li><strong>Unit</strong>Always convert months to years</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Percentage Must Know</h4>
+        <ul>
+          <li><strong>1/8</strong>12.5%</li>
+          <li><strong>3/8</strong>37.5%</li>
+          <li><strong>1/11</strong>9.09%</li>
+          <li><strong>Change</strong>(New - Old) / Old × 100</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Profit & Loss</h4>
+        <ul>
+          <li><strong>Profit</strong>SP - CP</li>
+          <li><strong>Loss</strong>CP - SP</li>
+          <li><strong>Discount</strong>MP - SP</li>
+          <li><strong>Same SP</strong>Net loss = a² / 100</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Ratio Moves</h4>
+        <ul>
+          <li><strong>Sum</strong>Add parts</li>
+          <li><strong>Difference</strong>Subtract parts</li>
+          <li><strong>Chain</strong>Match common term by LCM</li>
+          <li><strong>Variation</strong>Direct x/y, inverse xy</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Averages</h4>
+        <ul>
+          <li><strong>Average</strong>Total / Count</li>
+          <li><strong>Total</strong>Average × Count</li>
+          <li><strong>1 to n</strong>(n + 1) / 2</li>
+          <li><strong>Change</strong>New total - Old total</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Time & Work</h4>
+        <ul>
+          <li><strong>Work</strong>Rate × Time</li>
+          <li><strong>LCM</strong>Total work</li>
+          <li><strong>Together</strong>Add rates</li>
+          <li><strong>Efficiency</strong>Invert to get time ratio</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Pipes</h4>
+        <ul>
+          <li><strong>Fill</strong>Positive rate</li>
+          <li><strong>Empty</strong>Negative rate</li>
+          <li><strong>Net</strong>Add signed rates</li>
+          <li><strong>Time</strong>Tank capacity / Net rate</li>
+        </ul>
+      </div>
+      <div class="cheat">
+        <h4>Probability</h4>
+        <ul>
+          <li><strong>Basic</strong>Favourable / Total</li>
+          <li><strong>Complement</strong>1 - P(E)</li>
+          <li><strong>Either</strong>P(A)+P(B)-P(A∩B)</li>
+          <li><strong>At least one</strong>1 - none</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <h3>The antBox Library.</h3>
+    <p>Aptitude Vault is the quant wing of the library: pattern-first, formula-backed, and built for fast revision before mocks and placements.</p>
+    <p>Number Systems, Interest, Percentage, Profit & Loss, Ratio, Averages, Time & Work, Pipes, Probability, and quick-memory references are now loaded from the shared source screenshots.</p>
+    <div class="foot-meta">antbox · learning library · aptitude vault</div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const TOTAL_TERMS = 90;
+  const STORAGE_KEY = 'antbox-fa-preread-reviewed';
+
+  // === Load reviewed state ===
+  let reviewed = {};
+  try {
+    reviewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    if (typeof reviewed !== 'object' || reviewed === null) reviewed = {};
+  } catch(e) { reviewed = {}; }
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(reviewed)); } catch(e) {}
+  }
+
+  // === Wire up term cards ===
+  const terms = Array.from(document.querySelectorAll('.term'));
+  terms.forEach(term => {
+    const numEl = term.querySelector('.term-num');
+    if (!numEl) return;
+    const id = numEl.textContent.trim();
+    term.dataset.termId = id;
+    term.id = 'term-' + id;
+
+    const head = term.querySelector('.term-head');
+    if (!head) return;
+
+    // Cache search text for fast filtering
+    term._searchText = term.textContent.toLowerCase();
+
+    const btn = document.createElement('button');
+    btn.className = 'term-check';
+    btn.setAttribute('aria-label', 'Mark as reviewed');
+    btn.setAttribute('title', 'Mark as reviewed');
+    btn.textContent = '✓';
+    if (reviewed[id]) {
+      btn.classList.add('checked');
+      term.classList.add('reviewed');
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isChecked = btn.classList.toggle('checked');
+      term.classList.toggle('reviewed', isChecked);
+      if (isChecked) reviewed[id] = true;
+      else delete reviewed[id];
+      saveState();
+      updateProgress();
+    });
+    head.appendChild(btn);
+  });
+
+  // === Progress counter ===
+  const progressCount = document.getElementById('progress-count');
+  const progressFill = document.getElementById('progress-fill');
+  function updateProgress() {
+    const count = Object.keys(reviewed).length;
+    progressCount.textContent = count;
+    progressFill.style.width = (count / TOTAL_TERMS * 100) + '%';
+  }
+  updateProgress();
+
+  // === Search / filter ===
+  // Glossary sections are s01..s09 (not intro, scenarios, cheat)
+  const searchInput = document.getElementById('search');
+  const glossarySections = Array.from(document.querySelectorAll('section[id^="s0"]'));
+  const emptyState = document.getElementById('search-empty');
+  const emptyQuery = emptyState.querySelector('.empty-query');
+
+  let searchTimer = null;
+  function runFilter() {
+    const q = searchInput.value.trim().toLowerCase();
+    document.body.classList.toggle('searching', !!q);
+
+    if (!q) {
+      terms.forEach(t => t.classList.remove('hidden'));
+      glossarySections.forEach(s => s.classList.remove('section-hidden'));
+      emptyState.classList.remove('visible');
+      refreshBars();
+      return;
+    }
+
+    let totalShown = 0;
+    glossarySections.forEach(section => {
+      const sectionTerms = section.querySelectorAll('.term');
+      let shown = 0;
+      sectionTerms.forEach(t => {
+        const match = t._searchText.includes(q);
+        t.classList.toggle('hidden', !match);
+        if (match) shown++;
+      });
+      section.classList.toggle('section-hidden', shown === 0);
+      totalShown += shown;
+    });
+
+    if (totalShown === 0) {
+      emptyQuery.textContent = q;
+      emptyState.classList.add('visible');
+    } else {
+      emptyState.classList.remove('visible');
+    }
+    refreshBars();
+  }
+
+  // Replaced by the upgraded server-backed search listener below.
+
+  // === Keyboard shortcuts ===
+  document.addEventListener('keydown', (e) => {
+    const tag = (document.activeElement && document.activeElement.tagName) || '';
+    const inField = tag === 'INPUT' || tag === 'TEXTAREA';
+
+    if (e.key === '/' && !inField) {
+      e.preventDefault();
+      topbar.classList.add('visible');
+      searchInput.focus();
+      searchInput.select();
+    } else if (e.key === 'Escape') {
+      if (document.activeElement === searchInput) {
+        searchInput.value = '';
+        runFilter();
+        searchInput.blur();
+      }
+    }
+  });
+
+  // === Scroll behavior ===
+  const topbar = document.getElementById('topbar');
+  const rail = document.getElementById('rail');
+  const toTop = document.getElementById('to-top');
+  const hero = document.querySelector('.hero');
+
+  const navLinks = Array.from(document.querySelectorAll('#rail a'));
+  const spyTargets = navLinks.map(a => {
+    const id = a.getAttribute('href').slice(1);
+    return { link: a, el: document.getElementById(id) };
+  }).filter(x => x.el);
+
+  function refreshBars() {
+    const y = window.scrollY;
+    const hh = hero ? hero.offsetHeight : 600;
+    const past = y > hh - 60;
+    const searching = document.body.classList.contains('searching');
+    topbar.classList.toggle('visible', past || searching);
+    rail.classList.toggle('visible', past && !searching);
+    toTop.classList.toggle('visible', y > hh);
+
+    if (past && !searching) {
+      const probe = y + 180;
+      let active = spyTargets[0];
+      for (const s of spyTargets) {
+        if (s.el.offsetTop <= probe) active = s;
+      }
+      navLinks.forEach(l => l.classList.remove('active'));
+      if (active) active.link.classList.add('active');
+    }
+  }
+
+  let scrollTick = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollTick) {
+      window.requestAnimationFrame(() => {
+        refreshBars();
+        scrollTick = false;
+      });
+      scrollTick = true;
+    }
+  }, { passive: true });
+  refreshBars();
+
+  // === Back to top ===
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Logo links to the antBox Library home.
+
+  // === Collapsible scenarios ===
+  const scenarios = document.querySelectorAll('.scenario');
+  scenarios.forEach((sc, i) => {
+    if (i > 0) sc.classList.add('collapsed');
+    const head = sc.querySelector('.scenario-head');
+    if (!head) return;
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+    head.setAttribute('aria-expanded', i === 0 ? 'true' : 'false');
+    const toggle = () => {
+      const wasCollapsed = sc.classList.toggle('collapsed');
+      head.setAttribute('aria-expanded', wasCollapsed ? 'false' : 'true');
+    };
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+
+  // === Smooth scroll for anchors with topbar offset ===
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href === '#' || href.length < 2) return;
+      const target = document.getElementById(href.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      const offset = topbar.classList.contains('visible') ? 70 : 0;
+      window.scrollTo({
+        top: target.offsetTop - offset,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+
+// === Antbox upgraded full-document search ===
+const searchPanel = document.getElementById('search-panel');
+const searchResults = document.getElementById('search-results');
+const searchTotal = document.getElementById('search-total');
+const clearSearch = document.getElementById('clear-search');
+const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+let activeFilter = 'all';
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[char]));
+}
+
+function highlightText(text, query) {
+  const tokens = query.trim().split(/\s+/).filter(Boolean).slice(0, 6);
+  let escaped = escapeHtml(text);
+  tokens.forEach(token => {
+    const safe = token.replace(/[.*+?^\$\{\}()|[\]\\]/g, '\\$&');
+    escaped = escaped.replace(new RegExp('(' + safe + ')', 'ig'), '<mark>$1</mark>');
+  });
+  return escaped;
+}
+
+async function runServerSearch() {
+  const q = searchInput.value.trim();
+  if (!q) {
+    searchPanel.classList.remove('visible');
+    return;
+  }
+  searchPanel.classList.add('visible');
+  searchResults.innerHTML = '<div class="search-result"><p>Searching the preread...</p></div>';
+  try {
+    const response = await fetch('/api/search-aptitude', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ query: q, filters: [activeFilter] })
+    });
+    const data = await response.json();
+    searchTotal.textContent = data.total;
+    if (!data.results.length) {
+      searchResults.innerHTML = '<div class="search-result"><div class="search-result-title">No matches</div><p>Try a broader finance term or ask Ant.</p></div>';
+      return;
+    }
+    searchResults.innerHTML = data.results.map(item => '<a class="search-result" href="#' + escapeHtml(item.anchor) + '"><div class="search-result-meta">' + escapeHtml(item.section) + ' · ' + escapeHtml(item.type) + '</div><div class="search-result-title">' + highlightText(item.title, q) + '</div><p>' + highlightText(item.snippet, q) + '</p></a>').join('');
+  } catch (error) {
+    searchResults.innerHTML = '<div class="search-result"><div class="search-result-title">Search unavailable</div><p>The local page filter still works, but the server search could not respond.</p></div>';
+  }
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    runServerSearch();
+  });
+});
+
+clearSearch.addEventListener('click', () => {
+  searchInput.value = '';
+  runFilter();
+  searchPanel.classList.remove('visible');
+  searchInput.focus();
+});
+
+searchPanel.addEventListener('click', event => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link) return;
+  searchPanel.classList.remove('visible');
+});
+
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    runFilter();
+    runServerSearch();
+  }, 80);
+});
+
+// === Unit reader mode ===
+const unitSections = Array.from(document.querySelectorAll('section.learning-unit'));
+
+function openUnit(id, shouldScroll = true, forceOpen = false) {
+  const target = document.getElementById(id);
+  if (!target || !target.classList.contains('learning-unit')) return;
+  const shouldOpen = forceOpen || !target.classList.contains('unit-open');
+  unitSections.forEach(section => {
+    const open = section === target && shouldOpen;
+    section.classList.toggle('unit-open', open);
+    const head = section.querySelector('.section-head');
+    if (head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  if (shouldScroll && shouldOpen) {
+    const offset = topbar ? 78 : 0;
+    window.scrollTo({ top: Math.max(0, target.offsetTop - offset), behavior: 'smooth' });
+  }
+}
+
+unitSections.forEach(section => {
+  const head = section.querySelector('.section-head');
+  if (!head) return;
+  head.setAttribute('role', 'button');
+  head.setAttribute('tabindex', '0');
+  head.setAttribute('aria-expanded', section.classList.contains('unit-open') ? 'true' : 'false');
+  head.addEventListener('click', () => openUnit(section.id, false));
+  head.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openUnit(section.id, false);
+    }
+  });
+});
+
+document.addEventListener('click', event => {
+  const link = event.target.closest('.toc a[href^="#"], #rail a[href^="#"]');
+  if (!link) return;
+  const id = link.getAttribute('href').slice(1);
+  if (!document.getElementById(id)?.classList.contains('learning-unit')) return;
+  event.preventDefault();
+  event.stopPropagation();
+  openUnit(id, true, true);
+}, true);
+
+// === Ant assistant ===
+const antButton = document.getElementById('ask-ant');
+const heroAntButton = document.getElementById('hero-ask-ant');
+const antPanel = document.getElementById('ant-panel');
+const antOverlay = document.getElementById('ant-overlay');
+const antClose = document.getElementById('ant-close');
+const antMessages = document.getElementById('ant-messages');
+const antForm = document.getElementById('ant-form');
+const antInput = document.getElementById('ant-input');
+const antStatus = document.getElementById('ant-status');
+
+async function loadAntStatus() {
+  try {
+    const response = await fetch('/api/status');
+    const data = await response.json();
+    antStatus.textContent = data.mode || 'Local preread only';
+  } catch {
+    antStatus.textContent = 'Local preread only';
+  }
+}
+
+function openAnt(seed) {
+  antPanel.classList.add('visible');
+  antOverlay.classList.add('visible');
+  antPanel.setAttribute('aria-hidden', 'false');
+  antInput.focus();
+  if (seed) antInput.value = seed;
+}
+
+function closeAnt() {
+  antPanel.classList.remove('visible');
+  antOverlay.classList.remove('visible');
+  antPanel.setAttribute('aria-hidden', 'true');
+}
+
+function appendMessage(text, role, meta) {
+  const el = document.createElement('div');
+  el.className = 'ant-message' + (role ? ' ' + role : '');
+  el.textContent = text;
+  if (meta && ((meta.citations && meta.citations.length) || (meta.webCitations && meta.webCitations.length))) {
+    const citations = document.createElement('div');
+    citations.className = 'ant-citations';
+    (meta.citations || []).slice(0, 4).forEach(citation => {
+      const a = document.createElement('a');
+      a.href = '#' + citation.anchor;
+      a.textContent = citation.title;
+      citations.appendChild(a);
+    });
+    (meta.webCitations || []).slice(0, 3).forEach(citation => {
+      const a = document.createElement('a');
+      a.href = citation.url;
+      a.target = '_blank';
+      a.rel = 'noreferrer';
+      a.textContent = 'From web: ' + citation.title;
+      citations.appendChild(a);
+    });
+    el.appendChild(citations);
+  }
+  antMessages.appendChild(el);
+  antMessages.scrollTop = antMessages.scrollHeight;
+  return el;
+}
+
+async function askAnt(question) {
+  appendMessage(question, 'user');
+  const loading = appendMessage('Ant is checking the preread first...', 'loading');
+  try {
+    const response = await fetch('/api/ask-aptitude', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ question })
+    });
+    const data = await response.json();
+    loading.remove();
+    if (data.providerLabel) antStatus.textContent = data.providerLabel;
+    appendMessage(data.answer || 'I could not answer that yet.', '', data);
+  } catch (error) {
+    loading.remove();
+    appendMessage('I could not reach the assistant backend. The preread search is still available.', '');
+  }
+}
+
+antButton.addEventListener('click', () => openAnt());
+if (heroAntButton) heroAntButton.addEventListener('click', () => openAnt());
+loadAntStatus();
+antClose.addEventListener('click', closeAnt);
+antOverlay.addEventListener('click', closeAnt);
+
+document.querySelectorAll('.ant-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const selected = window.getSelection().toString().trim();
+    openAnt((selected ? selected + '\n\n' : '') + chip.textContent);
+  });
+});
+
+antForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const question = antInput.value.trim();
+  if (!question) return;
+  antInput.value = '';
+  askAnt(question);
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && antPanel.classList.contains('visible')) closeAnt();
+});
+
+})();
+</script>
+
+
+<style>
+  .aptitude-note { position: relative; padding-right: 56px; }
+  .aptitude-note .note-close {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--cream);
+    color: var(--ink-muted);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .aptitude-note .note-close:hover {
+    color: var(--purple-deep);
+    border-color: var(--purple-soft);
+  }
+</style>
+<script>
+  const note = document.getElementById('name-suggestion');
+  const noteClose = note && note.querySelector('.note-close');
+  if (note && !localStorage.getItem('antbox-aptitude-name-note-dismissed')) {
+    noteClose?.addEventListener('click', () => {
+      note.remove();
+      localStorage.setItem('antbox-aptitude-name-note-dismissed', '1');
+    });
+    setTimeout(() => {
+      if (document.body.contains(note)) note.remove();
+    }, 8000);
+  } else if (note) {
+    note.remove();
+  }
+</script>
+</body>
+</html>

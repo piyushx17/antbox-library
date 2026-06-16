@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The antBox Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f7f5ee;
+  --cream-warm: #f1ede0;
+  --purple: #bb62de;
+  --purple-soft: #e8d4f3;
+  --purple-mist: #f4e8fa;
+  --purple-deep: #8a3aaa;
+  --ink: #1a1a1a;
+  --ink-muted: #6a6a6a;
+  --ink-soft: #9a9a9a;
+  --line: #e4ddc7;
+  --line-soft: #efe9d6;
+  --white: #ffffff;
+  --red: #c1554a;
+  --green: #4a8a5e;
+  --amber: #c2933c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .num {
+  font-family: 'Century Gothic', 'Futura', 'Avenir', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--line);
+  background: rgba(247,245,238,.96);
+  backdrop-filter: blur(10px);
+}
+.nav-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand img { height: 34px; width: auto; display: block; }
+.links { display: flex; gap: 20px; align-items: center; }
+.links a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+.links a.active, .links a:hover { color: var(--purple-deep); }
+.hero {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.hero-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+  gap: 44px;
+  align-items: center;
+  padding: 64px 32px;
+}
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--purple-deep);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+h1 {
+  font-size: clamp(42px, 5.8vw, 70px);
+  line-height: 1.02;
+  max-width: 780px;
+  margin-bottom: 28px;
+}
+.accent { color: var(--purple); }
+.hero-copy {
+  color: var(--ink-muted);
+  font-size: 18px;
+  line-height: 1.62;
+  max-width: 680px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+.btn {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border-radius: 6px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+.btn.secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.signal {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 18px 60px rgba(26,26,26,.08);
+}
+.signal-head {
+  padding: 22px 24px;
+  background: var(--ink);
+  color: white;
+}
+.signal-head .small {
+  color: rgba(247,245,238,.65);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.signal-head h3 { font-size: 24px; }
+.signal-body { padding: 24px; }
+.signal-row {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.signal-row:last-child { border-bottom: 0; }
+.signal-row .num {
+  color: var(--purple);
+  font-size: 28px;
+}
+.signal-row strong { display: block; font-size: 14px; }
+.signal-row span { color: var(--ink-muted); font-size: 12px; }
+.badge {
+  color: var(--purple-deep);
+  background: var(--purple-mist);
+  border: 1px solid var(--purple-soft);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 11px;
+  font-weight: 700;
+}
+section { padding: 78px 0; border-bottom: 1px solid var(--line); }
+section.alt { background: var(--cream-warm); }
+.section-label {
+  font-size: 12px;
+  color: var(--purple-deep);
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.08;
+  max-width: 780px;
+  margin-bottom: 34px;
+}
+.books {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.book {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 36px;
+  transition: transform .18s, border-color .18s, box-shadow .18s;
+}
+.book:hover {
+  transform: translateY(-3px);
+  border-color: var(--purple);
+  box-shadow: 0 16px 40px rgba(26,26,26,.08);
+}
+.book h3 {
+  font-size: 30px;
+  line-height: 1.12;
+  margin-bottom: 14px;
+}
+.book p {
+  color: var(--ink-muted);
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 20px 0 26px;
+  border-top: 1px solid var(--line-soft);
+}
+.stat .num { color: var(--purple); font-size: 24px; line-height: 1; }
+.stat span {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 10px;
+  margin-top: 6px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.journey {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.step {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+.step .num {
+  color: var(--purple-deep);
+  font-size: 13px;
+  letter-spacing: .12em;
+  margin-bottom: 10px;
+}
+.step h3 { font-size: 20px; margin-bottom: 8px; }
+.step p { color: var(--ink-muted); font-size: 14px; }
+.ticker {
+  overflow: hidden;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--purple-deep);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid var(--line);
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerMove 34s linear infinite;
+}
+.ticker-group {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 18px 17px;
+}
+.ticker span::after {
+  content: '•';
+  color: var(--ink-soft);
+  margin-left: 34px;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes tickerMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 58px 0;
+}
+footer h3 { color: white; font-size: 24px; margin-bottom: 10px; }
+footer p { color: rgba(247,245,238,.62); font-size: 14px; max-width: 620px; }
+@media (max-width: 880px) {
+  .hero { min-height: auto; }
+  .hero-grid, .books, .journey { grid-template-columns: 1fr; }
+  .hero-grid { padding: 54px 28px; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 20px; }
+  .hero-grid { padding: 42px 20px; }
+  h1 { font-size: clamp(38px, 13vw, 50px); }
+  .nav-inner { align-items: flex-start; flex-direction: column; padding: 18px 0; }
+  .links { flex-wrap: wrap; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .book { padding: 28px; }
+  .signal-row { grid-template-columns: 54px 1fr; }
+  .badge { grid-column: 2; justify-self: start; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="Antbox"><img src="/assets/antbox-logo-cropped.png" alt="Antbox"></a>
+    <div class="links">
+      <a class="active" href="/">Library</a>
+      <a href="/finance">Finance</a>
+      <a href="/aptitude">Aptitude</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">The antBox Library</div>
+      <h1>The platform that turns <span class="accent">prereads</span> into readiness.</h1>
+      <p class="hero-copy">Built for capsule prep, placement readiness, and real work. Pick a book, learn the patterns, and ask Ant when you need a clean explanation instead of another messy tab.</p>
+      <div class="actions">
+        <a class="btn" href="#books">Browse Books ↓</a>
+        <a class="btn secondary" href="/aptitude">Open Aptitude Preview</a>
+      </div>
+    </div>
+    <aside class="signal" aria-label="Library readiness snapshot">
+      <div class="signal-head">
+        <div class="small">Live Library Snapshot</div>
+        <h3>Two books. One assistant. Faster revision.</h3>
+      </div>
+      <div class="signal-body">
+        <div class="signal-row"><div class="num">117</div><div><strong>Finance Pre-Read</strong><span>Month-end close vocabulary and scenarios</span></div><div class="badge">Ready</div></div>
+        <div class="signal-row"><div class="num">90</div><div><strong>Aptitude Vault</strong><span>Quant patterns, formulas, examples, and practice hints</span></div><div class="badge">Ready</div></div>
+        <div class="signal-row"><div class="num">AI</div><div><strong>Ask Ant</strong><span>Book-specific answers with citations</span></div><div class="badge">Live</div></div>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<div class="ticker" aria-label="Library themes">
+  <div class="ticker-track">
+    <div class="ticker-group">
+      <span>Capsule Prep</span><span>Career Readiness</span><span>Pattern Bank</span><span>Formula Vault</span><span>Finance Associate</span><span>Campus Placement</span><span>Ask Ant</span><span>Month-End Close</span><span>Number Systems</span><span>HCF & LCM</span><span>Divisibility</span><span>Readiness Sprints</span><span>Live Work Prep</span><span>Placement Practice</span><span>AI Study Assistant</span>
+    </div>
+    <div class="ticker-group" aria-hidden="true">
+      <span>Capsule Prep</span><span>Career Readiness</span><span>Pattern Bank</span><span>Formula Vault</span><span>Finance Associate</span><span>Campus Placement</span><span>Ask Ant</span><span>Month-End Close</span><span>Number Systems</span><span>HCF & LCM</span><span>Divisibility</span><span>Readiness Sprints</span><span>Live Work Prep</span><span>Placement Practice</span><span>AI Study Assistant</span>
+    </div>
+  </div>
+</div>
+
+<section id="books">
+  <div class="wrap">
+    <div class="section-label">Choose your book</div>
+    <h2 class="section-title">Not a course platform. Not a PDF dump. A working library for the moment you need it.</h2>
+    <div class="books">
+      <article class="book">
+        <div class="eyebrow">Finance Associate · Capsule Prep</div>
+        <h3>The 117 things you need before your first month-end close.</h3>
+        <p>Bookkeeping, AR/AP, tax compliance, payroll, audit, controls, SaaS metrics, scenarios, search, and Ask Ant.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">117</div><span>Terms</span></div>
+          <div class="stat"><div class="num">9</div><span>Sections</span></div>
+          <div class="stat"><div class="num">7</div><span>Scenarios</span></div>
+          <div class="stat"><div class="num">6</div><span>Diagrams</span></div>
+        </div>
+        <a class="btn" href="/finance">Open Finance →</a>
+      </article>
+      <article class="book">
+        <div class="eyebrow">Campus Placement · Quant Prep</div>
+        <h3>The 80 patterns you need to crack any aptitude test.</h3>
+        <p>Starting with Number Systems: formulas, solved examples, traps, HCF-LCM, divisibility, remainders, cyclicity, fractions, and surds.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">80</div><span>Patterns</span></div>
+          <div class="stat"><div class="num">8</div><span>Chapters</span></div>
+          <div class="stat"><div class="num">40+</div><span>Examples</span></div>
+          <div class="stat"><div class="num">1</div><span>Formula Sheet</span></div>
+        </div>
+        <a class="btn" href="/aptitude">Open Aptitude →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">A four-step readiness loop.</h2>
+    <div class="journey">
+      <div class="step"><div class="num">01 — Pick</div><h3>Choose a book.</h3><p>Finance for work readiness. Aptitude for placement prep.</p></div>
+      <div class="step"><div class="num">02 — Learn</div><h3>Open a unit.</h3><p>Each unit is collapsible, searchable, and built for quick revision.</p></div>
+      <div class="step"><div class="num">03 — Practice</div><h3>Use examples.</h3><p>Cards show formulas, worked steps, and watch-for traps.</p></div>
+      <div class="step"><div class="num">04 — Ask</div><h3>Talk to Ant.</h3><p>Ask for explanations, formulas, or step-by-step solutions with citations.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h3>The antBox Library.</h3>
+    <p>Future-proof capsule prep for finance readiness, campus placement, and whatever book we add next.</p>
+  </div>
+</footer>
+</body>
+</html>

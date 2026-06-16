@@ -1,0 +1,12 @@
+{
+  "name": "antbox-finance-preread",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/enhance-preread.mjs",
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "test": "node scripts/smoke-test.mjs"
+  }
+}
