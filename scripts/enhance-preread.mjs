@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
 const sourcePath = '/Users/piyushx17/Downloads/Finance_preread (1).html';
-const targetPath = new URL('../public/index.html', import.meta.url);
+const targetPath = new URL('../public/finance.html', import.meta.url);
 
 let html = await readFile(sourcePath, 'utf8');
 

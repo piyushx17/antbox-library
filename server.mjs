@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 const PORT = Number(process.env.PORT || 4173);
 const ROOT = process.env.ANTBOX_ROOT || new URL('.', import.meta.url).pathname;
 const PUBLIC_DIR = join(ROOT, 'public');
-const INDEX_PATH = join(PUBLIC_DIR, 'index.html');
+const INDEX_PATH = join(PUBLIC_DIR, 'finance.html');
 const APTITUDE_PATH = join(PUBLIC_DIR, 'aptitude.html');
 
 const corpusCache = new Map();
@@ -488,8 +488,8 @@ export async function handleApiFetch(method, pathname, body = {}) {
 
 async function serveStatic(req, res, url) {
   let requested = decodeURIComponent(url.pathname);
-  if (requested === '/' || requested === '') requested = '/home.html';
-  if (requested === '/finance' || requested === '/finance.html') requested = '/index.html';
+  if (requested === '/' || requested === '') requested = '/index.html';
+  if (requested === '/finance' || requested === '/finance.html') requested = '/finance.html';
   if (requested === '/aptitude' || requested === '/aptitude.html') requested = '/aptitude.html';
   const safePath = normalize(join(PUBLIC_DIR, requested));
   if (!safePath.startsWith(PUBLIC_DIR)) {

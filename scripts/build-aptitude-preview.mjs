@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
-const source = new URL('../public/index.html', import.meta.url);
+const source = new URL('../public/finance.html', import.meta.url);
 const target = new URL('../public/aptitude.html', import.meta.url);
 
 let html = await readFile(source, 'utf8');

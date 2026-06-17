@@ -10,13 +10,8 @@
   status = 200
 
 [[redirects]]
-  from = "/"
-  to = "/home.html"
-  status = 200
-
-[[redirects]]
   from = "/finance"
-  to = "/index.html"
+  to = "/finance.html"
   status = 200
 
 [[redirects]]
